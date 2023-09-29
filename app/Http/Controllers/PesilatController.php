@@ -12,7 +12,7 @@ class PesilatController extends Controller
      */
     public function index()
     {
-        //
+        return view('forms.advanced');
     }
 
     /**
