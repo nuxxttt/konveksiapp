@@ -30,29 +30,25 @@
             <li class="side-nav-item">
                 <a href="{{ route('any', 'index') }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
-                    <span class="badge bg-success float-end">9+</span>
                     <span> Dashboard </span>
                 </a>
             </li>
             <li class="side-nav-item">
                 <a href="{{ route('any', 'index') }}" class="side-nav-link">
-                    <i class="ri-dashboard-3-line"></i>
-                    <span class="badge bg-success float-end">9+</span>
-                    <span> Dashboard </span>
+                    <i class=" ri-layout-3-line"></i>
+                    <span> kontigen </span>
                 </a>
             </li>
             <li class="side-nav-item">
                 <a href="{{ route('any', 'index') }}" class="side-nav-link">
-                    <i class="ri-dashboard-3-line"></i>
-                    <span class="badge bg-success float-end">9+</span>
-                    <span> Dashboard </span>
+                    <i class=" ri-user-3-line"></i>
+                    <span> Pesilat/Atlet </span>
                 </a>
             </li>
             <li class="side-nav-item">
                 <a href="{{ route('any', 'index') }}" class="side-nav-link">
-                    <i class="ri-dashboard-3-line"></i>
-                    <span class="badge bg-success float-end">9+</span>
-                    <span> Dashboard </span>
+                    <i class=" ri-file-text-line"></i>
+                    <span> Events </span>
                 </a>
             </li>
         </ul>
