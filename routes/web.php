@@ -21,7 +21,7 @@ Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
     Route::get('/home', fn()=>view('index'))->name('home');
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
-    Route::get('{any}', [RoutingController::class, 'root'])->name('any');
+    // Route::get('{any}', [RoutingController::class, 'root'])->name('any');
     Route::get('/kontigen', [KontigenController::class, 'index'])->name('kontigen.index');
     Route::get('/pesilat', [PesilatController::class, 'index'])->name('pesilat.index');
     Route::get('/peserta', [PesertaController::class, 'index'])->name('perserta.index');
