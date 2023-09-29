@@ -22,4 +22,8 @@ Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
     Route::get('{any}', [RoutingController::class, 'root'])->name('any');
+    Route::resource('kontigen', KontigenController::class);
+    Route::resource('pesilat', PesilatController::class);
+    Route::resource('peserta', PesertaController::class);
+    Route::resource('event', EventController::class);
 });

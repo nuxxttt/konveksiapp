@@ -34,19 +34,19 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('any', 'index') }}" class="side-nav-link">
+                <a href="{{ route('kontigen.index') }}" class="side-nav-link">
                     <i class=" ri-layout-3-line"></i>
                     <span> kontigen </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('any', 'index') }}" class="side-nav-link">
+                <a href="{{ route('pesilat.index') }}" class="side-nav-link">
                     <i class=" ri-user-3-line"></i>
                     <span> Pesilat/Atlet </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('any', 'index') }}" class="side-nav-link">
+                <a href="{{ route('event.index') }}" class="side-nav-link">
                     <i class=" ri-file-text-line"></i>
                     <span> Events </span>
                 </a>
