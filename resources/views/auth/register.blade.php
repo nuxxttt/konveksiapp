@@ -24,30 +24,28 @@
                                         <a href="{{ route('any', 'index') }}" class="logo-light">
                                             <img src="/images/logo.png" alt="logo" height="22">
                                         </a>
-                                        <a href="{{ route('any', 'index') }}" class="logo-dark">
-                                            <img src="/images/logo-dark.png" alt="dark logo" height="22">
-                                        </a>
                                     </div>
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Free Sign Up</h4>
+                                        <h4 class="fs-20">Sing Up</h4>
                                         <p class="text-muted mb-3">Enter your email address and password to access
                                             account.</p>
 
                                         <!-- form -->
-                                        <form action="#">
+                                        <form action="{{url('/register')}}" method="POST">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Full Name</label>
-                                                <input class="form-control" type="text" id="fullname"
+                                                <input class="form-control" name="name" type="text" id="fullname"
                                                     placeholder="Enter your name" required="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required=""
+                                                <input class="form-control" name="email" type="email" id="emailaddress" required=""
                                                     placeholder="Enter your email">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required="" id="password"
+                                                <input class="form-control" name="password" type="password" required="" id="password"
                                                     placeholder="Enter your password">
                                             </div>
                                             <div class="mb-3">
@@ -55,7 +53,7 @@
                                                     <input type="checkbox" class="form-check-input"
                                                         id="checkbox-signup">
                                                     <label class="form-check-label" for="checkbox-signup">I accept <a
-                                                            href="javascript: void(0);" class="text-muted">Terms and
+                                                            class="text-muted">Terms and
                                                             Conditions</a></label>
                                                 </div>
                                             </div>
@@ -64,7 +62,7 @@
                                                     Up</button>
                                             </div>
 
-                                            <div class="text-center mt-4">
+                                            {{-- <div class="text-center mt-4">
                                                 <p class="text-muted fs-16">Sign in with</p>
                                                 <div class="d-flex gap-2 justify-content-center mt-3">
                                                     <a href="javascript: void(0);" class="btn btn-soft-primary"><i
@@ -76,7 +74,7 @@
                                                     <a href="javascript: void(0);" class="btn btn-soft-dark"><i
                                                             class="ri-github-fill"></i></a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </form>
                                         <!-- end form-->
                                     </div>
@@ -99,8 +97,10 @@
     <!-- end page -->
 
     <footer class="footer footer-alt fw-medium">
-        <span class="text-dark-emphasis">
-            <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by Techzaa
+        <span class="text-dark">
+            <script>
+                document.write(new Date().getFullYear())
+            </script> © NustraStudio
         </span>
     </footer>
 

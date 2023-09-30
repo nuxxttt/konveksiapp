@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\KontigenController;
+use App\Http\Controllers\PesilatController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +19,28 @@ use App\Http\Controllers\RoutingController;
 */
 
 require __DIR__ . '/auth.php';
-
+Route::get('/auth/logout', function () {
+    return view('auth.logout');
+});
+Route::group(['middleware'=>'auth'],function () {
+    Route::get('/auth/login', function() {
+        return redirect('/');
+    });
+    Route::get('/auth/register', function() {
+        return redirect('/');
+    });
+    Route::get('/auth/logout', function() {
+        return redirect('/');
+    });
+});
 Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
     Route::get('', [RoutingController::class, 'index'])->name('root');
     Route::get('/home', fn()=>view('index'))->name('home');
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
-    // Route::get('{any}', [RoutingController::class, 'root'])->name('any');
-    Route::get('/kontigen', [KontigenController::class, 'index'])->name('kontigen.index');
-    Route::get('/pesilat', [PesilatController::class, 'index'])->name('pesilat.index');
-    Route::get('/peserta', [PesertaController::class, 'index'])->name('perserta.index');
-    Route::get('/event', [EventController::class, 'index'])->name('event.index');
+    Route::get('{any}', [RoutingController::class, 'root'])->name('any');
+    Route::resource('kontigen', KontigenController::class);
+    Route::resource('pesilat', PesilatController::class);
+    Route::resource('peserta', PesertaController::class);
+    Route::resource('event', EventController::class);
 });

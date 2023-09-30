@@ -1,5 +1,10 @@
 <!-- ========== Left Sidebar Start ========== -->
 <div class="leftside-menu">
+    <style>
+        .side-nav .side-nav-link{
+            color: rgb(236, 236, 236);
+        }
+    </style>
 
     <!-- Brand Logo Light -->
     <a href="{{ route('any', 'index') }}" class="logo logo-light">
@@ -49,6 +54,12 @@
                 <a href="{{ route('event.index') }}" class="side-nav-link">
                     <i class=" ri-file-text-line"></i>
                     <span> Events </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('peserta.index') }}" class="side-nav-link">
+                    <i class=" ri-user-3-line"></i>
+                    <span> Perserta </span>
                 </a>
             </li>
         </ul>

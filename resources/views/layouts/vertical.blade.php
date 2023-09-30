@@ -16,7 +16,11 @@
 
         <div class="content-page">
             <div class="content">
-
+                <style>
+                    .card{
+                        border-radius:20px;
+                    }
+                </style>
                 <!-- Start Content-->
                 <div class="container-fluid">
                     @yield('content')
