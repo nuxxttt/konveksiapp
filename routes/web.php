@@ -29,9 +29,6 @@ Route::group(['middleware'=>'auth'],function () {
     Route::get('/auth/register', function() {
         return redirect('/');
     });
-    Route::get('/auth/logout', function() {
-        return redirect('/');
-    });
 });
 Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
     Route::get('', [RoutingController::class, 'index'])->name('root');
