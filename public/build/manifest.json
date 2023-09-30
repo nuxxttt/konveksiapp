@@ -267,7 +267,7 @@
     "src": "resources/js/pages/dashboard.js"
   },
   "resources/js/pages/datatable.init.js": {
-    "file": "assets/datatable.init-31a29779.js",
+    "file": "assets/datatable.init-57855a3a.js",
     "imports": [
       "__commonjsHelpers-de833af9.js"
     ],
@@ -289,7 +289,7 @@
     "src": "resources/js/pages/fileupload.init.js"
   },
   "resources/js/pages/form-advanced.init.js": {
-    "file": "assets/form-advanced.init-4a3be136.js",
+    "file": "assets/form-advanced.init-910b1fa4.js",
     "imports": [
       "__commonjsHelpers-de833af9.js",
       "_jquery-ef5d6b77.js",
