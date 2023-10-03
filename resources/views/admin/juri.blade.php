@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Kontigen', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Juri', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 @php
     $role = auth()->user()->role;
 @endphp
@@ -30,10 +30,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Kontingen/Sekolah</h4>
-                <div class="button mt-2">
+                <h4 class="header-title">Data Juri Lomba</h4>
+                {{-- <div class="button mt-2">
                     <a href="/{{$role}}/kontigen/add" class="btn btn-primary rounded-pill">Tambah Data</a>
-                </div>
+                </div> --}}
             </div>
             <div class="card-body">
                 <div class="responsive-table-plugin">
@@ -43,14 +43,13 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kontigen/Sekolah</th>
-                                        <th>Manager Team</th>
+                                        <th>Nama</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
+                                    {{-- @php
                                         $id =auth()->user()->id;
                                         $data = KontigenModel::where('id_user',$id)->get();
                                     
@@ -69,7 +68,7 @@
                                     @php
                                         $index++
                                     @endphp
-                                    @endforeach
+                                    @endforeach --}}
 
                                 </tbody>
                             </table>

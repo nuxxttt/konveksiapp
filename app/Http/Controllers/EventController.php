@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EventModel;
 
 class EventController extends Controller
 {
@@ -27,7 +28,26 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('foto')){
+        // foto
+        $foto = $request->file('foto');
+        $nama_foto = time()."_".$foto->getClientOriginalName();
+                    // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload_foto = 'banner';
+        $foto->move($tujuan_upload_foto,$nama_foto);
+        }
+        EventModel::create(
+            [
+                'name'=>$request->title,
+                'tanggal_mulai'=>$request->start,
+                'tanggal_selesai'=>$request->end,
+                'max_perserta'=>$request->max,
+                'status'=>$request->status,
+                'catatan'=>$request->catatan,
+                'img'=>"$tujuan_upload_foto/$nama_foto",
+            ]
+            );
+        return redirect("/admin/event");
     }
 
     /**

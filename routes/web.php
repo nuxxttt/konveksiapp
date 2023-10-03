@@ -6,6 +6,9 @@ use App\Http\Controllers\KontigenController;
 use App\Http\Controllers\PesilatController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\JuriController;
 
 /*
 |--------------------------------------------------------------------------

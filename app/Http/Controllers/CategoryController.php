@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\kategorys;
 
 class CategoryController extends Controller
 {
@@ -27,7 +28,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        kategorys::create([
+            'name'=>$request->nama
+        ]);
+        return view('admin.category');
     }
 
     /**

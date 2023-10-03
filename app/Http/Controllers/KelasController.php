@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\kelas;
 
 class KelasController extends Controller
 {
@@ -27,7 +28,12 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        kelas::create([
+            'name'=>$request->nama,
+            'status'=>$request->category
+
+        ]);
+        return view('admin.kelas');
     }
 
     /**
