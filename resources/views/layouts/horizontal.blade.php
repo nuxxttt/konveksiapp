@@ -39,6 +39,7 @@
     @include('layouts.shared/footer-scripts')
 
     @vite(['resources/js/layout.js', 'resources/js/main.js'])
+    @vite(['resources/js/pages/fileupload.init.js'])
 
 </body>
 

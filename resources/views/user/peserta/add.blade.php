@@ -85,7 +85,7 @@
                                 </select>
                             </div> --}}
                             <div class="my-3 col-md-6">
-                                <label for="example-textarea" class="form-label"> Alamat </label>
+                                <label for="example-textarea" class="form-label">Text area</label>
                                 <textarea class="form-control" id="example-textarea"
                                     rows="5"></textarea>
                             </div>

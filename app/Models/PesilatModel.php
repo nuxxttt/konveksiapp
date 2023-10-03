@@ -22,5 +22,8 @@ class PesilatModel extends Model
         'alamat',
         'foto',
         'persyaratan',
+        'id_kontigen',
+        'status',
+        'keterangan'
     ];
 }

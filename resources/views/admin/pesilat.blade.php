@@ -1,5 +1,7 @@
 @extends('layouts.vertical', ['title' => 'Pesilat', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
-
+@php
+    $role = auth()->user()->role;
+@endphp
 @section('css')
     @vite([
         'node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css',
@@ -27,7 +29,7 @@
             <div class="card-header">
                 <h4 class="header-title">Data Pesilat/Atlit</h4>
                 <div class="button mt-2">
-                    <a href="/kontigen/add" class="btn btn-primary rounded-pill">Tambah Data</a>
+                    <a href="/{{$role}}/pesilat/add" class="btn btn-primary rounded-pill">Tambah Data</a>
                 </div>
             </div>
             <div class="card-body">

@@ -1,5 +1,7 @@
-@extends('layouts.vertical', ['title' => 'Kontigen', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
-
+@extends('layouts.vertical', ['title' => 'Pesilat', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@php
+    $role = auth()->user()->role;
+@endphp
 @section('css')
     @vite([
         'node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css',
@@ -13,6 +15,10 @@
 @endsection
 
 @section('content')
+            @php
+                use App\Models\PesilatModel;
+                $index = 1;
+            @endphp
     <style>
         .card-body th{
             color: rgb(10, 10, 10);
@@ -25,9 +31,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Kontingen/Sekolah</h4>
+                <h4 class="header-title">Data Pesilat/Atlit</h4>
                 <div class="button mt-2">
-                    <a href="/kontigen/add" class="btn btn-primary rounded-pill">Tambah Data</a>
+                    <a href="/{{$role}}/pesilat/add" class="btn btn-primary rounded-pill">Tambah Data</a>
                 </div>
             </div>
             <div class="card-body">
@@ -36,16 +42,39 @@
                         <div class="table-responsive" data-pattern="priority-columns">
                             <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
+                                    @php
+                                        $id =auth()->user()->id;
+                                        $data = PesilatModel::where('id_kontigen',$id)->get();
+                                    
+                                    @endphp
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kontigen/Sekolah</th>
-                                        <th>Manager Team</th>
+                                        <th>Nama Pesilat</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @foreach ($data as $item)
+                                        <tr>
+                                            <td>
+                                                {{$index}}
+                                            </td>
+                                            <td style="color: #237677">
+                                                {{$item->nama}}
+                                                <br>
+                                                {{$item->nik}}
+                                                <br>
+                                                {{$item->jenis_kelamin}}
+                                            </td>
+                                            <td style="color: green">
+                                                {{$item->status}}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" type="button">Hapus</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

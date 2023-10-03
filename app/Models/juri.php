@@ -5,21 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KontigenModel extends Model
+class juri extends Model
 {
     use HasFactory;
-    protected $table = 'kontigens';
+    protected $table = 'juris';
     protected $fillable =[
-        'kontigen',
-        'manager',
-        'official',
-        'hp',
-        'provinsi',
-        'kota',
-        'kecamatan',
-        'desa',
+        'name',
         'alamat',
-        'id_user',
+        'nomor_hp',
         'status',
         'keterangan'
     ];

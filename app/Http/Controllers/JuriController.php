@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\KontigenModel;
 
-class KontigenController extends Controller
+class JuriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,17 +27,7 @@ class KontigenController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'kontigen'=>$request->kontigen,
-            'manager'=>$request->manager,
-            'official'=>$request->official,
-            'hp'=>$request->hp,
-            'alamat'=>$request->alamat,
-            'id_user'=>$request->id_user,
-            'status'=>'active'
-        ];
-        KontigenModel::create($data);
-        return redirect('/kontigen');
+        //
     }
 
     /**

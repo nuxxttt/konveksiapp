@@ -40,4 +40,9 @@ Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
     Route::resource('pesilat', PesilatController::class);
     Route::resource('peserta', PesertaController::class);
     Route::resource('event', EventController::class);
+    Route::middleware(['role:admin'])->group(function () {
+        Route::resource('category', CategoryController::class);
+        Route::resource('kelas', KelasController::class);
+        Route::resource('juri', JuriController::class);
+    });
 });

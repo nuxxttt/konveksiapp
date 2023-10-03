@@ -39,11 +39,20 @@ class RoutingController extends Controller
 
         $mode = $request->query('mode');
         $demo = $request->query('demo');
-     
+        // check middleware 
+        $role = auth()->user()->role;
+        $check = strpos($first, "$role");
+        $index = strpos($first,"index");
         if ($first == "assets")
             return redirect('home');
-
-        return view($first, ['mode' => $mode, 'demo' => $demo]);
+        // check mate middleware
+        if($check !== false || $index !== false){
+            return view($first, ['mode' => $mode, 'demo' => $demo]);
+        }
+        else{
+            return view("404",['mode' => $mode, 'demo' => $demo]);
+        }
+        return view("404",['mode' => $mode, 'demo' => $demo]);
     }
 
     /**
@@ -58,9 +67,18 @@ class RoutingController extends Controller
         if ($first == "assets")
             return redirect('home');
 
-
-
-    return view($first .'.'. $second, ['mode' => $mode, 'demo' => $demo]);
+            $role = auth()->user()->role;
+            $check = strpos($first, "$role");
+            if ($first == "assets")
+                return redirect('home');
+            // check mate middleware
+            if($check !== false){
+                return view($first .'.'. $second, ['mode' => $mode, 'demo' => $demo]);
+            }
+            else{
+                return view("404",['mode' => $mode, 'demo' => $demo]);
+            }
+            return view("404",['mode' => $mode, 'demo' => $demo]);
     }
 
     /**
@@ -71,11 +89,17 @@ class RoutingController extends Controller
         $mode = $request->query('mode');
         $demo = $request->query('demo');
 
+        $role = auth()->user()->role;
+        $check = strpos($first, "$role");
         if ($first == "assets")
             return redirect('home');
-
-        dd($first,$second,$third);
-        
-        return view($first . '.' . $second . '.' . $third, ['mode' => $mode, 'demo' => $demo]);
+        // check mate middleware
+        if($check !== false){
+            return view($first . '.' . $second . '.' . $third, ['mode' => $mode, 'demo' => $demo]);
+        }
+        else{
+            return view("404",['mode' => $mode, 'demo' => $demo]);
+        }
+        return view("404",['mode' => $mode, 'demo' => $demo]);
     }
 }

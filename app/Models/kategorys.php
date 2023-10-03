@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EventModel extends Model
+class kategorys extends Model
 {
     use HasFactory;
-    protected $table = 'Events';
+    protected $table = 'kategorys';
     protected $fillable =[
         'name',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'max_perserta',
         'status',
-        'catatan',
-        'img'
+        'keterangan'
     ];
 }
