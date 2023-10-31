@@ -9,6 +9,13 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\JuriController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\MitraController;
+use App\Http\Controllers\ProduksiController;
+use App\Http\Controllers\ProfileController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,19 +40,29 @@ Route::group(['middleware'=>'auth'],function () {
         return redirect('/');
     });
 });
-Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
-    Route::get('', [RoutingController::class, 'index'])->name('root');
-    Route::get('/home', fn()=>view('index'))->name('home');
-    Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
-    Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
-    Route::get('{any}', [RoutingController::class, 'root'])->name('any');
-    Route::resource('kontigen', KontigenController::class);
-    Route::resource('pesilat', PesilatController::class);
-    Route::resource('peserta', PesertaController::class);
-    Route::resource('event', EventController::class);
-    Route::middleware(['role:admin'])->group(function () {
+
+$roles = [
+    'admin', 'superadmin'
+];
+foreach ($roles as $roless) {
+    Route::group(['prefix' => "$roless", 'middleware' => ['auth']], function () use ($roless) {
+        // Define your admin-related routes here
+        Route::resource('barang', BarangController::class);
+        Route::resource('mitra', MitraController::class);
+        Route::resource('supplier', SupplierController::class);
         Route::resource('category', CategoryController::class);
-        Route::resource('kelas', KelasController::class);
-        Route::resource('juri', JuriController::class);
+        Route::resource('produksi', ProduksiController::class);
+        Route::resource('profile', ProfileController::class);
+        // Define other admin routes here
     });
-});
+};
+//Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+//Route::get('/mitra/{id}/edit', [MitraController::class, 'edit'])->name('mitra.edit');
+
+// Your other routes outside of the admin prefix
+
+Route::get('', [RoutingController::class, 'index'])->name('root');
+Route::get('/home', fn () => view('index'))->name('home');
+Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
+Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
+Route::get('{any}', [RoutingController::class, 'root'])->name('any');

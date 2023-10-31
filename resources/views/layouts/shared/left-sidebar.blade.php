@@ -33,14 +33,24 @@
             @php
                 $role = auth()->user()->role;
             @endphp
-
+        <li class="side-nav-item">
+            <a href="{{ route("any", "$role/barang/create") }}" class="side-nav-link">
+                <i class="  ri-shopping-cart-line"></i>
+                <span> Input Barang</span>
+            </a>
+        </li>
+        <li class="side-nav-item">
+            <a href="{{ route("any", "$role/kontigen") }}" class="side-nav-link">
+                <i class="  ri-shopping-bag-line"></i>
+                <span> Penjualan </span>
+            </a>
+        </li>
             <li class="side-nav-item">
-                <a href="{{ route("any", "$role/index") }}" class="side-nav-link">
+                <a href="{{ route("any", "index") }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
                     <span> Dashboard </span>
                 </a>
             </li>
-            @if ($role === "admin")
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false"
                     aria-controls="sidebarCharts" class="side-nav-link">
@@ -51,42 +61,67 @@
                 <div class="collapse" id="sidebarCharts">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('second', ["$role", 'juri']) }}">Juri</a>
+                            <a href="{{ route('second', ["$role", 'barang']) }}">Barang</a>
                         </li>
                         <li>
-                            <a href="{{ route('second', ["$role", 'category']) }}">Categorys</a>
+                            <a href="{{ route('second', ["$role", 'mitra']) }}">Mitra</a>
                         </li>
                         <li>
-                            <a href="{{ route('second', ["$role", 'kelas']) }}">Kelas</a>
+                            <a href="{{ route('second', ["$role", 'rak']) }}">Rak</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('second', ["$role", 'category']) }}">Kategori</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('second', ["$role", 'supplier']) }}">Supplier</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            @endif
             <li class="side-nav-item">
                 <a href="{{ route("any", "$role/kontigen") }}" class="side-nav-link">
-                    <i class=" ri-layout-3-line"></i>
-                    <span> kontigen </span>
+                    <i class=" ri-p2p-fill"></i>
+                    <span> Distribusi Kain Mitra </span>
                 </a>
             </li>
             <li class="side-nav-item">
                 <a href="{{ route("any", "$role/pesilat") }}" class="side-nav-link">
-                    <i class=" ri-user-3-line"></i>
-                    <span> Pesilat/Atlet </span>
+                    <i class="  ri-gift-line"></i>
+                    <span> Pengemasan </span>
                 </a>
             </li>
             <li class="side-nav-item">
                 <a href="{{ route("any", "$role/event") }}" class="side-nav-link">
-                    <i class=" ri-file-text-line"></i>
-                    <span> Events </span>
+                    <i class=" ri-box-3-line "></i>
+                    <span> Rak</span>
                 </a>
             </li>
             <li class="side-nav-item">
+                <a href="{{ route("any", "$role/produksi") }}" class="side-nav-link">
+                    <i class=" ri-treasure-map-line"></i>
+                    <span> Proses Produksi</span>
+                </a>
+
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route("any", "$role/konversi") }}" class="side-nav-link">
+                    <i class=" ri-calculator-line "></i>
+                    <span> Konversi</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route("any", "$role/pemotongan") }}" class="side-nav-link">
+                    <i class="ri-scissors-line"></i>
+                    <span> Pemotongan</span>
+                </a>
+
+            </li>
+            {{-- <li class="side-nav-item">
                 <a href="{{ route("any", "$role/peserta") }}" class="side-nav-link">
                     <i class=" ri-user-3-line"></i>
                     <span> Perserta </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
         <!--- End Sidemenu -->
 

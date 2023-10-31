@@ -12,13 +12,10 @@
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xxl-8 col-lg-10">
+                <div class="col-xxl-4 col-lg-10">
                     <div class="card overflow-hidden">
                         <div class="row g-0">
-                            <div class="col-lg-6 d-none d-lg-block p-2">
-                                <img src="/images/auth-img.jpg" alt="" class="img-fluid rounded h-100">
-                            </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg">
                                 <div class="d-flex flex-column h-100">
                                     <div class="auth-brand p-4">
                                         <a href="" class="logo-light">
@@ -49,7 +46,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Back To <a href="{{ route('second', [ 'auth' , 'login']) }}" class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Log In</b></a></p>
+                    <p class="text-dark-emphasis">Back To <a href="{{ route('any', ['login']) }}" class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Log In</b></a></p>
                 </div> <!-- end col -->
             </div>
             <!-- end row -->
@@ -63,8 +60,14 @@
             <script>document.write(new Date().getFullYear())</script> © Nustra Studio
         </span>
     </footer>
-   
+
     @include('layouts.shared/footer-scripts')
 </body>
 
 </html>
+
+<script>
+    setTimeout(function() {
+  window.location.href = "{{ route('any', ['login']) }}"; // Replace with your desired URL
+}, 1600); // 2000 milliseconds (2 seconds)
+</script>

@@ -15,7 +15,6 @@
 @endsection
     @php
         use App\Models\KontigenModel;
-        use App\Models\kategorys;
         $index = 1;
     @endphp
 @section('content')
@@ -31,9 +30,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Category</h4>
+                <h4 class="header-title">Data Kontingen/Sekolah</h4>
                 <div class="button mt-2">
-                    <a href="/{{$role}}/category/add" class="btn btn-primary rounded-pill">Tambah Data</a>
+                    <a href="/{{$role}}/kontigen/add" class="btn btn-primary rounded-pill">Tambah Data</a>
                 </div>
             </div>
             <div class="card-body">
@@ -44,21 +43,28 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
+                                        <th>Nama Kontigen/Sekolah</th>
+                                        <th>Manager Team</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $id =auth()->user()->id;
-                                        $data = kategorys::all();
-                                    
+                                        $data = KontigenModel::where('id_user',$id)->get();
+
                                     @endphp
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{$index}}</td>
-                                        <td>{{$item->name}}</td>
-                                        <td> <button class="btn btn-danger" type="button">Hapus</button></td>
+                                        <td>{{$item->kontigen}}</td>
+                                        <td>Manager:{{$item->manager}}
+                                            <br>
+                                            Official:{{$item->official}}
+                                        </td>
+                                        <td style="color: green">{{$item->status}}</td>
+                                        <td>test</td>
                                     </tr>
                                     @php
                                         $index++

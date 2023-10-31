@@ -97,3 +97,10 @@ File: Main Css File
 @import "custom/plugins/responsive-table";
 @import "custom/plugins/ion-rangeslider";
 @import "custom/plugins/cropper";
+
+.card-body th{
+    color: rgb(10, 10, 10);
+}
+.card-body td{
+    color: rgb(10, 10, 10);
+}
