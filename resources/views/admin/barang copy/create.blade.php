@@ -16,8 +16,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="category_id" class="form-label">Category:</label>
-                            <select name="category_id" class="form-control" required>
-                                <option value="" disabled selected>Select Category</option>
+                            <select name="supplier_id" class="form-control" required>
+                                <option value="" disabled selected>Select Supplier</option>
                                 @foreach($kategorys as $kategori)
                                     <option value="{{ $kategori->id }}">{{ $kategori->product }}</option>
                                 @endforeach
@@ -42,6 +42,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+
                         <div class="form-group mb-3">
                             <label for="harga_pokok" class="form-label">Harga Pokok:</label>
                             <input type="number" name="harga_pokok" class="form-control" required>
@@ -52,18 +53,17 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="status" class="form-label">Status:</label>
-                            <select name="status" class="form-select" required>
-                                <option value="Tersedia">Tersedia</option>
-                                <option value="Dibatalkan">Dibatalkan</option>
+                            <select name="status" class="form-select">
+                                        <option value="Tersedia">Tersedia</option>
+                                        <option value="Dibatalkan">Dibatalkan</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="keterangan" class="form-label">Keterangan:</label>
-                            <select name="keterangan" class="form-select" required>
+                            <select name="keterangan" class="form-select">
                                 <option value="Barang Masuk">Barang Masuk</option>
-                                <option value="Dari Client">Dari Client</option>
-                            </select>
-                        </div>
+                                <option value="Dibatalkan">Dari Client</option>
+                    </select>                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">

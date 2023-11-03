@@ -22,8 +22,8 @@
                                     <input type="text" name="phone" class="form-control" required>
                                 </div>
                                 <div class="form-group my-3 w-50">
-                                    <label for="keterangan" class="form-label">Keterangan:</label>
-                                    <input type="text" name="keterangan" class="form-control" required>
+                                    <label for="alamat" class="form-label">Alamat:</label>
+                                    <input type="text" name="alamat" class="form-control" required>
                                 </div>
 
                             <div class="col-md-12">

@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Tambah Barang', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Tambah Proses', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
 <div class="container">
@@ -14,10 +14,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group mb-3">
-                            <label for="product" class="form-label">Product:</label>
+                            <label for="product" class="form-label">Produk:</label>
                             <select name="product" class="form-control select2" required>
                                 @foreach($barang as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->judul }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="mitra" class="form-label">Mitra:</label>
-                            <select name="mitra" class="form-select" required>
+                            <select name="mitra" class="form-control" required>
                                 @foreach($mitras as $mitra)
                                     <option value="{{ $mitra->id }}">{{ $mitra->nama }}</option>
                                 @endforeach
@@ -36,15 +36,16 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="status" class="form-label">Status:</label>
-                            <select name="keterangan" class="form-select" required>
+                            <select name="status" class="form-control" required>
                                 <option value="Selesai">Selesai</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Dikirim">Dikirim</option>
-                    </select>                          </div>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group mb-3">
-                            <label for="mulai" class="form-label">Mulai:</label>
+                            <label for="mulai" class="form-label">Tanggal Mulai:</label>
                             <input type="text" name="mulai" class="form-control datepicker" required>
                         </div>
                         <div class="form-group mb-3">
@@ -61,7 +62,6 @@
     </div>
 </div>
 
-
 <script src="{{ asset('js/flatpickr.js') }}"></script>
 <script>
     flatpickr(".datepicker", {
@@ -69,7 +69,7 @@
         dateFormat: "Y-m-d",
     });
     $(".select2").select2({
-        placeholder: "Search for a product...",
+        placeholder: "Cari produk...",
         allowClear: true,
     });
 </script>

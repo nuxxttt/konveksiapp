@@ -30,27 +30,25 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'category_id' => 'required|integer',
+            'supplier_id' => 'required|integer',
+            'kode_barang' => 'required|string',
+            'harga_jual' => 'required|numeric',
+            'harga_pokok' => 'required|numeric',
+            'stok' => 'required|integer',
+            'judul' => 'required|string',
+            'status' => 'required|string',
+            'keterangan' => 'required|string',
+        ]);
 
-            $request->validate([
-                'category_id' => 'required|integer',
-                'supplier_id' => 'required|integer',
-                'kode_barang' => 'required|string',
-                'harga_jual' => 'required|numeric',
-                'harga_pokok' => 'required|numeric',
-                'stok' => 'required|integer',
-                'judul' => 'required|string',
-                'status' => 'required|string',
-                'keterangan' => 'required|string',
-            ]);
+        $uuid = Uuid::uuid4()->toString();
+        $requestData = $request->all();
+        $requestData['uuid'] = $uuid;
 
-            $uuid = Uuid::uuid4()->toString();
-            $requestData = $request->all();
-            $requestData['uuid'] = $uuid;
+        Barang::create($requestData);
 
-            Barang::create($requestData);
-
-            return redirect()->route('barang.index')->with('success', 'Barang berhasil disimpan.');
-
+        return redirect()->route('barang.index')->with('success', 'Barang berhasil disimpan.');
     }
 
     public function show($id)
@@ -69,7 +67,9 @@ class BarangController extends Controller
         return view('admin.barang.edit', compact('barang', 'suppliers', 'kategorys'));
     }
 
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, Barang $barang)
     {
         $request->validate([
             'category_id' => 'required|integer',
@@ -83,11 +83,11 @@ class BarangController extends Controller
             'keterangan' => 'required|string',
         ]);
 
-        $barang = Barang::find($id);
-        $barang->update($request->except('_token'));
+        $barang->update($request->all());
 
         return redirect()->route('barang.index')->with('success', 'Barang berhasil diperbarui.');
     }
+
 
     public function destroy($id)
     {

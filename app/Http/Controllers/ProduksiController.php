@@ -59,7 +59,8 @@ class ProduksiController extends Controller
     {
         $produksi = Produksi::find($id);
         $mitras = Mitra::all();
-        return view('admin.produksi.edit', compact('produksi', 'mitras'));
+        $barang = Barang::all();
+        return view('admin.produksi.edit', compact('produksi', 'mitras', 'barang'));
     }
 
     public function update(Request $request, $id)

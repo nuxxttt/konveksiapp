@@ -22,6 +22,8 @@ class Barang extends Model
     ];
 
 
+    public $timestamps = false;
+
     // Definisikan relasi ke tabel 'category' dan 'supplier' jika diperlukan
     public function category()
     {

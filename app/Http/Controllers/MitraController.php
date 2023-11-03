@@ -24,7 +24,7 @@ class MitraController extends Controller
         $request->validate([
             'nama' => 'required',
             'phone' => 'required',
-            'keterangan' => 'required',
+            'alamat' => 'required',
         ]);
 
         Mitra::create($request->all());
@@ -53,7 +53,7 @@ class MitraController extends Controller
         $request->validate([
             'nama' => 'required',
             'phone' => 'required',
-            'keterangan' => 'required',
+            'alamat' => 'required',
         ]);
 
         $mitra = Mitra::find($id);

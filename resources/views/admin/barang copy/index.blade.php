@@ -29,9 +29,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Daftar Proses Produksi</h4>
+                <h4 class="header-title">Daftar Barang</h4>
                 <div class="button mt-2">
-                    <a href="{{ route('produksi.create') }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                    <a href="{{ route('barang.create') }}" class="btn btn-primary rounded-pill">Tambah Data</a>
                 </div>
             </div>
             <div class="card-body">
@@ -43,50 +43,56 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Product</th>
-                                        <th>Jumlah</th>
-                                        <th>Tanggal Mulai</th>
-                                        <th>Deadline</th>
+                                        <th>Category</th>
+                                        <th>Supplier</th>
+                                        <th>Kode Barang</th>
+                                        <th>Harga Jual</th>
+                                        <th>Harga Pokok</th>
+                                        <th>Stok</th>
+                                        <th>Keterangan</th>
                                         <th>Status</th>
-                                        <th>Mitra</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($produksi as $produksi)
+                                    @foreach($barangs as $barang)
                                     <tr>
-                                        <td>{{ $produksi->id }}</td>
+                                        <td>{{ $barang->id }}</td>
+                                        <td>{{ $barang->judul }}</td>
                                         <td>
-                                            @foreach($barang as $barangg)
-                                            @if($barangg->id == $produksi->product)
-                                                {{ $barangg->judul }}
+                                            @foreach($kategorys as $kategori)
+                                            @if($kategori->id == $barang->category_id)
+                                                {{ $kategori->product }}
                                             @endif
-                                        @endforeach</td>
-                                        <td>{{ $produksi->jumlah }}</td>
-                                        <td>{{ $produksi->mulai }}</td>
-                                        <td>{{ $produksi->deadline }}</td>
-                                        <td>
-                                            @if ($produksi->status == 'Selesai')
-                                                <span class="badge bg-primary-subtle text-primary">Selesai</span>
-                                            @elseif ($produksi->status == 'Pending')
-                                                <span class="badge bg-warning-subtle text-warning">Pending</span>
-                                            @elseif ($produksi->status == 'Dikirim')
-                                                <span class="badge bg-success-subtle text-success">Dikirim</span>
-                                            @endif
+                                        @endforeach
                                         </td>
-
-                                        <td>                    @foreach($mitras as $mitra)
-                                            @if($mitra->id == $produksi->mitra)
-                                                {{ $mitra->nama }}
-                                            @endif
-                                        @endforeach</td>
-
+                                        <td>
+                                            @foreach($suppliers as $supplier)
+                                                @if($supplier->id == $barang->supplier_id)
+                                                    {{ $supplier->supplier }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $barang->kode_barang }}</td>
+                                        <td>{{ 'Rp. ' . number_format($barang->harga_jual, 2, ',', '.'); }}</td>
+                                        <td>{{ 'Rp. ' . number_format($barang->harga_pokok, 2, ',', '.'); }}</td>
+                                        <td>{{ $barang->stok }}</td>
+                                        <td>{{ $barang->keterangan }}</td>
+                                        <td><?php
+                                            if ($barang->status == 'Tersedia') {
+                                                echo '<span class="badge bg-info-subtle text-info">' . $barang->status . '</span>';
+                                            } elseif ($barang->status == 'Dibatalkan') {
+                                                echo '<span class="badge bg-pink-subtle text-pink">' . $barang->status . '</span>';
+                                            }
+                                            ?>
+                                            </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('produksi.edit', $produksi->id) }}" class="me-1 ">
+                                                <a href="{{ route('barang.edit', $barang->id) }}" class="me-1 ">
                                                     <button type="submit" class="btn btn-primary rounded-pill"><i class="ri-edit-line"></i></button>
                                                 </a>
 
-                                                <form action="{{ route('produksi.destroy', $produksi->id) }}" method="POST">
+                                                <form action="{{ route('barang.destroy', $barang->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger rounded-pill"><i class="ri-delete-bin-6-line"></i></button>
@@ -115,6 +121,5 @@
 @section('script')
 @vite([
     'resources/js/pages/datatable.init.js',
-    'resources/js/pages/responsive-table.init.js',
-])
+    'resources/js/pages/responsive-table.init.js',])
 @endsection

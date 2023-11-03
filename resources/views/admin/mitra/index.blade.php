@@ -33,7 +33,7 @@
                                             <th>ID</th>
                                             <th>Nama Mitra</th>
                                             <th>Nomor Telepon</th>
-                                            <th>Keterangan</th>
+                                            <th>Alamat</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
