@@ -91,7 +91,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route("any", "$role/event") }}" class="side-nav-link">
+                <a href="{{ route("any", "$role/rak") }}" class="side-nav-link">
                     <i class=" ri-box-3-line "></i>
                     <span> Rak</span>
                 </a>

@@ -14,6 +14,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProduksiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RakController;
+use App\Http\Controllers\IsiRakController;
 
 
 
@@ -53,6 +55,8 @@ foreach ($roles as $roless) {
         Route::resource('category', CategoryController::class);
         Route::resource('produksi', ProduksiController::class);
         Route::resource('profile', ProfileController::class);
+        Route::resource('rak', RakController::class);
+        Route::resource('isirak', IsiRakController::class);
         // Define other admin routes here
     });
 };
