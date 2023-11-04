@@ -48,13 +48,18 @@
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{$index}}</td>
-                                        <td>{{$item->nama_barang}}</td>
+                                        <td>
+                                            @foreach($barang as $barangg)
+                                            @if($barangg->id == $item->nama_barang)
+                                                {{ $barangg->judul }}
+                                            @endif
+                                            @endforeach
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('isirak.edit', $item->id) }}" class="me-1">
+                                                <a href="{{ route('isirak.edit', $item->id) }}?id_rak={{ $id_rak }}" class="me-1">
                                                 <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                             </a>
-                                            <form action="{{ route('isirak.destroy', $item->id) }}" method="POST">
+                                            <form action="{{ route('isirak.destroy', $item->id) }}?id_rak={{ $id_rak }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>

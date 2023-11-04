@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IsiRak;
+use App\Models\Barang;
 use Illuminate\Support\Facades\Log;
 
 class IsiRakController extends Controller
@@ -12,13 +13,15 @@ class IsiRakController extends Controller
     {
         $isiraks = IsiRak::all();
         $id_rak = $request->input('id_rak');
-        return view('admin.isirak.index', compact('isiraks', 'id_rak'));
+        $barang = Barang::all();
+        return view('admin.isirak.index', compact('isiraks', 'id_rak', 'barang'));
     }
 
     public function create(Request $request)
     {
         $id_rak = $request->input('id_rak');
-        return view('admin.isirak.create', compact('id_rak'));
+        $barang = Barang::all();
+        return view('admin.isirak.create', compact('id_rak', 'barang'));
     }
 
     public function store(Request $request)
@@ -45,7 +48,8 @@ class IsiRakController extends Controller
     {
         $isirak = IsiRak::find($id);
         $id_rak = $request->input('id_rak');
-        return view('admin.isirak.edit', compact('isirak', 'id_rak'));
+        $barang = Barang::all();
+        return view('admin.isirak.edit', compact('isirak', 'id_rak', 'barang'));
     }
 
     public function update(Request $request, $id)

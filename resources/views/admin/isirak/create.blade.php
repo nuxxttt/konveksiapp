@@ -23,8 +23,11 @@
 
                             <div class="my-3 col-md-6">
                                 <label for="nama_barang" class="form-label">Nama Barang</label>
-                                <input type="text" required name="nama_barang" id="nama_barang" class="form-control">
-                            </div>
+                                <select name="nama_barang" class="form-control" required>
+
+                                    @foreach($barang as $barangg)
+                                        <option value="{{ $barangg->id }}" selected>{{ $barangg->judul }}</option>
+                                @endforeach        </select>                            </div>
 
                             <div class="my-3 col-md-6">
                                 <input type="hidden" type="text" name="id_rak" id="id_rak" class="form-control" value="{{ $id_rak }}">
