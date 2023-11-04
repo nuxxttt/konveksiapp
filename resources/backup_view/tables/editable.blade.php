@@ -26,7 +26,7 @@
                                 <th>Salary</th>
                             </tr>
                         </thead>
-                    
+
                         <tbody>
                             <tr>
                                 <td>1</td>
@@ -147,7 +147,7 @@
                                 <th>Salary</th>
                             </tr>
                         </thead>
-                    
+
                         <tbody>
                             <tr>
                                 <td>1</td>

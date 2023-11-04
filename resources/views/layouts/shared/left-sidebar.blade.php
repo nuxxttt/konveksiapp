@@ -9,20 +9,36 @@
     <!-- Brand Logo Light -->
     <a href="{{ route("any", "index") }}" class="logo logo-light">
         <span class="logo-lg">
-            <img src="/images/logo.png" alt="logo">
+            @if(isset($settings) && $settings->logo)
+                <img src="{{ asset($settings->logo) }}" alt="dark logo">
+            @else
+                <img src="{{ asset('images/logo.png') }}" alt="dark logo">
+            @endif
         </span>
         <span class="logo-sm">
-            <img src="/images/logo-sm.png" alt="small logo">
+            @if(isset($settings) && $settings->logo)
+                <img src="{{ asset($settings->logo) }}" alt="small logo">
+            @else
+                <img src="{{ asset('images/logo-sm.png') }}" alt="small logo">
+            @endif
         </span>
     </a>
 
     <!-- Brand Logo Dark -->
     <a href="{{ route("any", "index") }}" class="logo logo-dark">
         <span class="logo-lg">
-            <img src="/images/logo.png" alt="dark logo">
+            @if(isset($settings) && $settings->logo)
+                <img src="{{ asset($settings->logo) }}" alt="dark logo">
+            @else
+                <img src="{{ asset('images/logo.png') }}" alt="dark logo">
+            @endif
         </span>
         <span class="logo-sm">
-            <img src="/images/logo-sm.png" alt="small logo">
+            @if(isset($settings) && $settings->logo)
+                <img src="{{ asset($settings->logo) }}" alt="small logo">
+            @else
+                <img src="{{ asset('images/logo-sm.png') }}" alt="small logo">
+            @endif
         </span>
     </a>
 

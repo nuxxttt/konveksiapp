@@ -12,8 +12,6 @@
 @endsection
 @section('content')
 
-    @include('layouts.shared/page-title', ['sub_title' => 'Daftar Administrator', 'page_title' => 'Administrator'])
-
     <div class="row mt-xl-3">
         <div class="col-12">
             <div class="card">

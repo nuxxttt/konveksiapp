@@ -22,7 +22,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Category</h4>
+                <h4 class="header-title">Data Kategori</h4>
                 <div class="button mt-2">
                     <a href="/{{$role}}/category/create" class="btn btn-primary rounded-pill">Tambah Data</a>
                 </div>

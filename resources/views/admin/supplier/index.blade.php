@@ -1,8 +1,6 @@
 @extends('layouts.vertical', ['title' => 'Daftar Supplier'])
 
 @section('content')
-    @include('layouts.shared/page-title', ['sub_title' => 'Daftar Supplier', 'page_title' => 'Supplier'])
-
     <div class="row mt-xl-3">
         <div class="col-12">
             <div class="card">

@@ -16,7 +16,9 @@ class MitraController extends Controller
 
     public function create()
     {
-        return view('admin.mitra.create');
+        $mitra = Mitra::all();
+
+        return view('admin.mitra.create', compact('mitra'));
     }
 
     public function store(Request $request)
@@ -41,10 +43,10 @@ class MitraController extends Controller
     public function edit($id)
     {
         // Find the mitra by id
-        $mitras = Mitra::find($id);
+        $mitra = Mitra::find($id);
 
         // Pass the id and mitra variables to the view
-        return view('admin.mitra.edit', compact('id', 'mitras'));
+        return view('admin.mitra.edit', compact('id', 'mitra'));
     }
 
 

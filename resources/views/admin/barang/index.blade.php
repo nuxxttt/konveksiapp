@@ -17,14 +17,6 @@
     $mitras = Mitra::all();
 @endphp
 @section('content')
-    <style>
-        .card-body th{
-            color: rgb(10, 10, 10);
-        }
-        .card-body td{
-            color: rgb(10, 10, 10);
-        }
-    </style>
 <div class="row mt-xl-3">
     <div class="col-12">
         <div class="card">

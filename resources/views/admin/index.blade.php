@@ -134,9 +134,9 @@
 
                                 </tbody>
                             </table>
-                        </div>        
+                        </div>
                     </div>
-                </div>                           
+                </div>
             </div> <!-- end card-->
         </div> <!-- end col-->
     </div>

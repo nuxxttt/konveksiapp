@@ -16,6 +16,7 @@ use App\Http\Controllers\ProduksiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\IsiRakController;
+use App\Http\Controllers\SettingsController;
 
 
 
@@ -57,7 +58,10 @@ foreach ($roles as $roless) {
         Route::resource('profile', ProfileController::class);
         Route::resource('rak', RakController::class);
         Route::resource('isirak', IsiRakController::class);
-        // Define other admin routes here
+        Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
+        Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
+        Route::put('settings', [SettingsController::class, 'update'])->name('admin.settings.update');
+
     });
 };
 //Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');

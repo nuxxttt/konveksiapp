@@ -32,33 +32,6 @@
                     </div>
                 </div>
 
-                <div id="layout-width">
-                    <h5 class="my-3 fs-16 fw-bold">Layout Mode</h5>
-
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-check form-switch card-switch mb-1">
-                                <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-fluid" value="fluid">
-                                <label class="form-check-label" for="layout-mode-fluid">
-                                    <img src="/images/layouts/light.png" alt="" class="img-fluid">
-                                </label>
-                            </div>
-                            <h5 class="font-14 text-center text-muted mt-2">Fluid</h5>
-                        </div>
-
-                        <div class="col-4">
-                            <div id="layout-boxed">
-                                <div class="form-check form-switch card-switch mb-1">
-                                    <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-boxed" value="boxed">
-                                    <label class="form-check-label" for="layout-mode-boxed">
-                                        <img src="/images/layouts/boxed.png" alt="" class="img-fluid">
-                                    </label>
-                                </div>
-                                <h5 class="font-14 text-center text-muted mt-2">Boxed</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <h5 class="my-3 fs-16 fw-bold">Topbar Color</h5>
 

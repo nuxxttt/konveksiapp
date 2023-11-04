@@ -1,42 +1,39 @@
 @extends('layouts.vertical', ['title' => 'Tambah Mitra', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
+<div class="container c-form">
+    @include('layouts.shared/page-title', ['sub_title' => 'Mitra', 'page_title' => 'Tambah Mitra'])
 
-<div class="row mt-xl-3">
-    @include('layouts.shared/page-title', ['sub_title' => 'Tambah Mitra', 'page_title' => 'Tambah Mitra'])
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Formulir Tambah Data Mitra</h4>
-            </div>
-            <div class="card-body">
-                        <form method="POST" action="{{ route('mitra.store') }}">
-                            @csrf
-                            <div class="g-2">
-                                <div class="form-group my-3 w-50">
-                                    <label for="nama" class="form-label">Nama Mitra:</label>
-                                    <input type="text" name="nama" class="form-control" required>
-                                </div>
-                                <div class="form-group my-3 w-50">
-                                    <label for="phone" class="form-label">Nomor Telepon:</label>
-                                    <input type="text" name="phone" class="form-control" required>
-                                </div>
-                                <div class="form-group my-3 w-50">
-                                    <label for="alamat" class="form-label">Alamat:</label>
-                                    <input type="text" name="alamat" class="form-control" required>
-                                </div>
+    <div class="card mx-auto"> <!-- Center align the card -->
+        <div class="card-body">
+            <form method="POST" action="{{ route('mitra.store') }}">
+                @csrf
+                <div class="g-2">
 
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                            </div>
-                        </div>
-                        </form>
+                    <!-- Nama Mitra -->
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama Mitra:</label>
+                        <input type="text" name="nama" class="form-control" required>
+                    </div>
 
+                    <!-- Nomor Telepon -->
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Nomor Telepon:</label>
+                        <input type="text" name="phone" class="form-control" required>
+                    </div>
 
-                <!-- end row-->
-            </div> <!-- end card-body -->
-        </div> <!-- end card -->
-    </div><!-- end col -->
+                    <!-- Alamat -->
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat:</label>
+                        <input type="text" name="alamat" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
 @endsection
