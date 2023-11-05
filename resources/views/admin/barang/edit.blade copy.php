@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="category_id" class="form-label">Category:</label>
-                            <select name="category_id" class="form-select select2">
+                            <select name="category_id" class="form-select">
                                 @foreach($kategorys as $kategori)
                                     @if($kategori->id == $barang->category_id)
                                         <option value="{{ $kategori->id }}" selected>{{ $kategori->product }}</option>
@@ -30,8 +30,8 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="supplier_id" class "form-label">Supplier:</label>
-                            <select name="supplier_id" class="form-select select2">
+                            <label for="supplier_id" class="form-label">Supplier:</label>
+                            <select name="supplier_id" class="form-select">
                                 @foreach($suppliers as $supplier)
                                     @if($supplier->id == $barang->supplier_id)
                                         <option value="{{ $supplier->id }}" selected>{{ $supplier->supplier }}</option>
@@ -71,15 +71,13 @@
                                         <option value="{{ $s }}">{{ $s }}</option>
                                     @endif
                                 @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="keterangan" class="form-label">Keterangan:</label>
-                            <select name="keterangan" class="form-select">
-                                <option value="Barang Masuk">Barang Masuk</option>
-                                <option value="Dibatalkan">Dari Client</option>
-                            </select>
-                        </div>
+                            </select>                        </div>
+                            <div class="form-group mb-3">
+                                <label for="keterangan" class="form-label">Keterangan:</label>
+                                <select name="keterangan" class="form-select">
+                                    <option value="Barang Masuk">Barang Masuk</option>
+                                    <option value="Dibatalkan">Dari Client</option>
+                        </select>                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">
@@ -89,11 +87,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    // Initialize Select2 for searchable select inputs
-    $(document).ready(function () {
-        $('.select2').select2();
-    });
-</script>
 @endsection

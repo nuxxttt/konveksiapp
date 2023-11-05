@@ -48,9 +48,6 @@
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
                                                 <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password">
-                                                <a href="auth-forgotpw.html" class="text-muted float-end"><small>Forgot
-                                                    your
-                                                    password?</small></a>
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">
@@ -102,9 +99,13 @@
 
     <footer class="footer footer-alt fw-medium">
         <span class="text-dark">
-            <script>
-                document.write(new Date().getFullYear())
-            </script> © NustraStudio
+            <div class="col-12 text-center">
+                @if(isset($settings) && $settings->title)
+                <script>document.write(new Date().getFullYear())</script> © {{$settings->title}}
+                @else
+                <script>document.write(new Date().getFullYear())</script> © Nustra Studio
+                @endif
+            </div>
         </span>
     </footer>
 

@@ -3,7 +3,6 @@
 @section('content')
 <div class="container c-form">
     @include('layouts.shared/page-title', ['sub_title' => 'Kelola Admin', 'page_title' => 'Tambah Administrator'])
-
     <div class="card">
         <div class="card-body">
             <form method="POST" action="{{ route('profile.store') }}">

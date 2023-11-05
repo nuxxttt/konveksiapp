@@ -9,11 +9,18 @@ $role = auth()->user()->role;
     <div class="card">
         <div class="card-body">
             @if ($role == "superadmin")
+            <div class="mb-3 text-center">
+                <label>Ubah Tema : </label>
+                <a class="nav-link" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                    <i class="ri-settings-3-line fs-22"></i>
+                </a>
+            </div>
             <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <!-- Logo -->
+
 
                 <div class="mb-3">
                     <label for="logo" class="form-label">Logo:</label>
@@ -34,7 +41,12 @@ $role = auth()->user()->role;
                 </div>
             </form>
             @else
-
+            <div class="mb-3 text-center">
+                <label>Ubah Tema : </label>
+                <a class="nav-link" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                    <i class="ri-settings-3-line fs-22"></i>
+                </a>
+            </div>
             @endif
 
         </div>

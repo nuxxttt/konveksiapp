@@ -5,6 +5,7 @@
     @include('layouts.shared/title-meta', ['title' => $title])
     @yield('css')
     @include('layouts.shared/head-css', ['mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
 </head>
 
 <body>

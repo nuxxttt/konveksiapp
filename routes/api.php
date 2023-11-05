@@ -2,18 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MitraController;
+use App\Http\Controllers\BarangApiController;
+use App\Http\Controllers\CategoryApiController;
+use App\Http\Controllers\SupplierApiController;
+use App\Models\Barang;
+use App\Models\Mitra;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('barang', BarangApiController::class);
+Route::resource('kategori', CategoryApiController::class);
+Route::resource('mitra', MitraApiController::class);
+Route::resource('supplier', SupplierApiController::class);

@@ -37,7 +37,6 @@
                                     </thead>
                                     <tbody>
                                         @foreach($profiles as $profile)
-                                        @if($profile->role !== 'superadmin')
                                             <tr>
                                                 <td>{{ $profile->id }}</td>
                                                 <td>{{ $profile->name }}</td>
@@ -48,15 +47,18 @@
                                                         <a href="{{ route('profile.edit', $profile->id) }}" class="me-1">
                                                             <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                                         </a>
+                                                        @if($profile->role !== 'superadmin')
+
                                                         <form action="{{ route('profile.destroy', $profile->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
                                                         </form>
+                                                        @endif
+
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endif
                                     @endforeach
 
                                     </tbody>
