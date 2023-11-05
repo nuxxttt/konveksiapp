@@ -12,6 +12,7 @@ use App\Models\Mitra;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('barang', BarangApiController::class);
     Route::resource('kategori', CategoryApiController::class);
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::resource('mitra', MitraApiController::class);
     Route::resource('supplier', SupplierApiController::class);
 
