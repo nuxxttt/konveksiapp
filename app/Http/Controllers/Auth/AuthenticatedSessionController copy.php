@@ -53,7 +53,7 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return response()->json(['message' => 'Invalid credentialss'], 401);
     }
     /**
      * Destroy an authenticated session.
