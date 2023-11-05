@@ -9,7 +9,10 @@ use App\Http\Controllers\SupplierApiController;
 use App\Models\Barang;
 use App\Models\Mitra;
 
-Route::resource('barang', BarangApiController::class);
-Route::resource('kategori', CategoryApiController::class);
-Route::resource('mitra', MitraApiController::class);
-Route::resource('supplier', SupplierApiController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::resource('barang', BarangApiController::class);
+    Route::resource('kategori', CategoryApiController::class);
+    Route::resource('mitra', MitraApiController::class);
+    Route::resource('supplier', SupplierApiController::class);
+
+});

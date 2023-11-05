@@ -43,7 +43,7 @@ class BarangApiController extends Controller
 
         $barang = Barang::create($requestData);
 
-        return response()->json($barang, 201); // Return the created resource with a 201 status code.
+        return response()->json($barang, 201);
     }
 
     public function show($id)
@@ -59,7 +59,7 @@ class BarangApiController extends Controller
 
     public function edit($id)
     {
-        // Implement as needed for your API, e.g., return a form structure for editing a barang.
+
     }
 
     public function update(Request $request, $id)
