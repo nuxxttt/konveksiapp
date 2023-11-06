@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("id_rak");
             $table->string("nama_barang");
+            $table->string("kuantitas");
             $table->timestamps();
         });
     }

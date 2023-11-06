@@ -47,6 +47,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Kuantitas</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -64,7 +65,10 @@
                                             @if($barangg->id == $item->nama_barang)
                                                 {{ $barangg->judul }}
                                             @endif
-                                            @endforeach
+                                            @endforeach</td>
+                                            <td>
+                                                {{$item->kuantitas}}
+                                            </td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('isirak.edit', $item->id) }}?id_rak={{ $id_rak }}" class="me-1">

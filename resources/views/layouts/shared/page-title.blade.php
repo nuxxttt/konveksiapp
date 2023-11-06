@@ -8,7 +8,7 @@
                     @if ($sub_title == "")
                         <a class="breadcrumb-item active" href="{{ route("any", "index") }}">Dashboard</a> / {{ $page_title }}
                     @else
-                        <a class="breadcrumb-item active" href="{{URL::previous()}}">{{ $sub_title }} </a>/ {{ $page_title }}
+                        <a class="breadcrumb-item active" href="{{URL::previous()}}"><i class="ri-arrow-left-double-line"></i> </a>/ {{ $page_title }}
                     @endif</p>
                 </ol>
             </div>

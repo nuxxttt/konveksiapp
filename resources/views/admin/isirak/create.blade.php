@@ -37,6 +37,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="my-3">
+                        <label for="kuantitas" class="form-label">Kuantitas:</label>
+                        <input type="text" required name="kuantitas" id="kuantitas" class="form-control">
+                    </div>
 
                     <div class="mb-3">
                         <input type="hidden" name="id_rak" id="id_rak" class="form-control" value="{{ $id_rak }}">

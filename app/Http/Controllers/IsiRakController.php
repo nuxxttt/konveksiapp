@@ -29,6 +29,7 @@ class IsiRakController extends Controller
         $request->validate([
             'id_rak' => 'required',
             'nama_barang' => 'required',
+            'kuantitas' => 'required',
         ]);
         $id_rak = $request->input('id_rak');
 
@@ -57,6 +58,7 @@ class IsiRakController extends Controller
         $request->validate([
             'id_rak' => 'required',
             'nama_barang' => 'required',
+            'kuantitas' => 'required',
         ]);
 
         $isirak = IsiRak::find($id);
@@ -72,7 +74,7 @@ class IsiRakController extends Controller
         $isirak = IsiRak::find($id);
         $isirak->delete();
 
-        return redirect('/superadmin/isirak?id_rak=' . $id_rak)->with('success', 'Isi Rak berhasil dihapus.');
+        return redirect('/admin/isirak?id_rak=' . $id_rak)->with('success', 'Isi Rak berhasil dihapus.');
     }
 
 }
