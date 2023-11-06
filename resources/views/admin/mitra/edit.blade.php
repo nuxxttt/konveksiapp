@@ -16,16 +16,16 @@
                     <input type="text" name="nama" class="form-control" required value="{{ $mitra->nama }}">
                 </div>
 
-                <!-- Nomor Telepon -->
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Nomor Telepon:</label>
-                    <input type="text" name="phone" class="form-control" required value="{{ $mitra->phone }}">
-                </div>
-
                 <!-- Alamat -->
                 <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat:</label>
                     <input type="text" name="alamat" class="form-control" required value="{{ $mitra->alamat }}">
+                </div>
+
+                <!-- Nomor Telepon -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Nomor Telepon:</label>
+                    <input type="text" name="phone" class="form-control" required value="{{ $mitra->phone }}">
                 </div>
 
                 <div class="">

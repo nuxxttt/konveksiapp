@@ -1,5 +1,14 @@
 @extends('layouts.vertical', ['title' => 'Dashboard Konveksi', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@php
+use App\Models\Barang;
+use App\Models\Category;
+use App\Models\Mitra;
 
+
+$crkain = Category::where('product', 'Kain')->get()->first()->id;
+$jml = Barang::where('category_id', $crkain);
+$mitra = Mitra::all()->count();
+@endphp
 @section('content')
 @include('layouts.shared/page-title', ['sub_title' => 'Menu', 'page_title' => 'Dashboard'])
 
@@ -11,7 +20,7 @@
                         <i class=" ri-school-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Jumlah Kain </h6>
-                    <h2 class="my-2">15</h2>
+                    <h2 class="my-2">{{$jml->count()}}</h2>
                     <p class="mb-0">
                         <span class="text-nowrap">Roll</span>
                     </p>
@@ -41,7 +50,7 @@
                         <i class=" ri-user-3-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Mitra/Penjahit</h6>
-                    <h2 class="my-2">23</h2>
+                    <h2 class="my-2">{{$mitra}}</h2>
                     <p class="mb-0">
                         <span class="text-nowrap">mitra</span>
                     </p>

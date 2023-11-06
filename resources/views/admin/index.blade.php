@@ -11,7 +11,7 @@
                         <i class=" ri-school-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Jumlah Kain </h6>
-                    <h2 class="my-2">15</h2>
+                    <h2 class="my-2">1s5</h2>
                     <p class="mb-0">
                         <span class="text-nowrap">Roll</span>
                     </p>

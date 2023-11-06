@@ -30,9 +30,9 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama Mitra</th>
-                                            <th>Nomor Telepon</th>
                                             <th>Alamat</th>
-                                            <th>Aksi</th>
+                                            <th>Nomor Telepon</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,8 +40,8 @@
                                             <tr>
                                                 <td>{{ $mitra->id }}</td>
                                                 <td>{{ $mitra->nama }}</td>
-                                                <td>{{ $mitra->phone }}</td>
                                                 <td>{{ $mitra->alamat }}</td>
+                                                <td>{{ $mitra->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="{{ route('mitra.edit', $mitra->id) }}" class="me-1">

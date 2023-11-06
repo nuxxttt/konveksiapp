@@ -133,7 +133,21 @@
                     <i class="ri-scissors-line"></i>
                     <span> Pemotongan</span>
                 </a>
-
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarChartss" aria-expanded="false"
+                        aria-controls="sidebarChartss" class="side-nav-link">
+                        <i class="ri-history-line"></i>
+                        <span> Histori </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarChartss">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a href="{{ route('second', ["$role", 'barang']) }}">Barang</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </li>
             {{-- <li class="side-nav-item">
                 <a href="{{ route("any", "$role/peserta") }}" class="side-nav-link">

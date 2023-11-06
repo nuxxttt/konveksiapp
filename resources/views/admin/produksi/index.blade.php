@@ -41,7 +41,7 @@
                                         <th>Deadline</th>
                                         <th>Status</th>
                                         <th>Mitra</th>
-                                        <th>Aksi</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

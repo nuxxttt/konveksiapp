@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @include('layouts.shared/page-title', ['sub_title' => 'Tambah Barang', 'page_title' => 'Tambah Barang'])
+    @include('layouts.shared/page-title', ['sub_title' => 'Barang', 'page_title' => 'Tambah Barang'])
 
     <div class="card">
         <div class="card-body">

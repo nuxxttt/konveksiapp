@@ -32,7 +32,7 @@
                                             <th>Nama </th>
                                             <th>Email</th>
                                             <th>Role</th>
-                                            <th>Aksi</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>

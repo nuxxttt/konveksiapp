@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Action</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

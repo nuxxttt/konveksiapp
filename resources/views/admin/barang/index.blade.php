@@ -43,7 +43,7 @@
                                         <th>Stok</th>
                                         <th>Keterangan</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
