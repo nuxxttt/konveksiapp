@@ -18,6 +18,7 @@ use App\Http\Controllers\RakController;
 use App\Http\Controllers\IsiRakController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\HistoryController;
 
 
 
@@ -61,6 +62,7 @@ foreach ($roles as $roless) {
         Route::resource('satuan', SatuanController::class);
         Route::resource('isirak', IsiRakController::class);
         Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
+        Route::get('penjualan/create', [HistoryController::class, 'penjualan_create'])->name('admin.penjualan.create');
         Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
         Route::put('settings', [SettingsController::class, 'update'])->name('admin.settings.update');
 

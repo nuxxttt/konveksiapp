@@ -56,7 +56,7 @@
             </a>
         </li>
         <li class="side-nav-item">
-            <a href="{{ route("any", "$role/kontigen") }}" class="side-nav-link">
+            <a href="{{ route("any", "$role/penjualan/create") }}" class="side-nav-link">
                 <i class="  ri-shopping-bag-line"></i>
                 <span> Penjualan </span>
             </a>
