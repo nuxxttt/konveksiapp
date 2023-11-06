@@ -80,13 +80,16 @@
                             <a href="{{ route('second', ["$role", 'barang']) }}">Barang</a>
                         </li>
                         <li>
+                            <a href="{{ route('second', ["$role", 'category']) }}">Kategori</a>
+                        </li>
+                        <li>
                             <a href="{{ route('second', ["$role", 'mitra']) }}">Mitra</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ["$role", 'rak']) }}">Rak</a>
                         </li>
                         <li>
-                            <a href="{{ route('second', ["$role", 'category']) }}">Kategori</a>
+                            <a href="{{ route('second', ["$role", 'satuan']) }}">Satuan</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ["$role", 'supplier']) }}">Supplier</a>

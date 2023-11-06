@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\IsiRakController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SatuanController;
 
 
 
@@ -57,6 +58,7 @@ foreach ($roles as $roless) {
         Route::resource('produksi', ProduksiController::class);
         Route::resource('profile', ProfileController::class);
         Route::resource('rak', RakController::class);
+        Route::resource('satuan', SatuanController::class);
         Route::resource('isirak', IsiRakController::class);
         Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
         Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
