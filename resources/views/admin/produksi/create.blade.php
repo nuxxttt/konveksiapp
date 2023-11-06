@@ -1,11 +1,8 @@
 @extends('layouts.vertical', ['title' => 'Tambah Proses', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
-
 @section('content')
 <div class="container">
     @include('layouts.shared/page-title', ['sub_title' => 'Tambah Proses', 'page_title' => 'Tambah Proses'])
     <link rel="stylesheet" href="{{ asset('css/flatpickr.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <div class="card">
         <div class="card-body">
@@ -68,10 +65,7 @@
         enableTime: false,
         dateFormat: "Y-m-d",
     });
-    $(".select2").select2({
-        placeholder: "Cari produk...",
-        allowClear: true,
-    });
+
 </script>
 
 @endsection

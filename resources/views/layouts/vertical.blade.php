@@ -5,7 +5,14 @@
     @include('layouts.shared/title-meta', ['title' => $title])
     @yield('css')
     @include('layouts.shared/head-css', ['mode' => $mode ?? '', 'demo' => $demo ?? ''])
+<!-- Include CSS for Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
+    <!-- Include jQuery (required by Select2) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -44,6 +51,11 @@
     @include('layouts.shared/footer-scripts')
 
     @vite(['resources/js/layout.js', 'resources/js/main.js'])
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 
 </body>
 

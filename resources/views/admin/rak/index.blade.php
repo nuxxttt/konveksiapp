@@ -1,4 +1,5 @@
 @extends('layouts.vertical', ['title' => 'Daftar Kategori', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
 @php
     $role = auth()->user()->role;
 @endphp
@@ -11,6 +12,7 @@
         'node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css',
         'node_modules/datatables.net-select-bs5/css/select.bootstrap5.min.css',
         'node_modules/admin-resources/rwd-table/rwd-table.min.css',
+        'node_modules/jquery-toast-plugin/dist/jquery.toast.min.css',
     ])
 @endsection
     @php
@@ -22,10 +24,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Rak</h4>
-                <div class="button mt-2">
-                    <a href="/{{$role}}/rak/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h4 class="header-title">Data Rak</h4>
+                        <div class="button mt-2">
+                            <a href="/{{$role}}/rak/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                        </div>
+                    </div>
+                    @include('layouts.notifications')
+
                 </div>
+
             </div>
             <div class="card-body">
                 <div class="responsive-table-plugin">
@@ -88,4 +97,8 @@
 @vite([
     'resources/js/pages/datatable.init.js',
     'resources/js/pages/responsive-table.init.js',])
+@endsection
+
+@section('script-bottom')
+    @vite(['resources/js/pages/toastr.init.js',])
 @endsection

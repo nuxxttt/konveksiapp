@@ -1,0 +1,19 @@
+    <!-- Include CSS for Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+
+    <!-- Include jQuery (required by Select2) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+	<select name="nama_barang" id="nama_barang" class="form-control" required>
+    	<option value="{{ $barangg->id }}">{{ $barangg->judul }}</option>
+	</select>
+
+    <script>
+        $(document).ready(function() {
+            $('#nama_barang').select2();
+        });
+    </script>

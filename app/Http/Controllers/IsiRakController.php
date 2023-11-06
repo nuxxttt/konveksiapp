@@ -35,7 +35,7 @@ class IsiRakController extends Controller
 
         IsiRak::create($request->all());
 
-        return redirect()->route('isirak.index', ['id_rak' => $id_rak])->with('success', 'IsiRak created successfully.');
+        return redirect()->route('isirak.index', ['id_rak' => $id_rak])->with('success', 'Berhasil menambahkan barang kedalam Rak.');
     }
 
     public function show($id)
@@ -63,7 +63,7 @@ class IsiRakController extends Controller
         $isirak->update($request->all());
         $id_rak = $request->input('id_rak');
 
-        return redirect()->route('isirak.index', ['id_rak' => $id_rak])->with('success', 'IsiRak updated successfully.');
+        return redirect()->route('isirak.index', ['id_rak' => $id_rak])->with('success', 'Isi Rak telah diperbarui');
     }
 
     public function destroy(Request $request, $id)
@@ -72,7 +72,7 @@ class IsiRakController extends Controller
         $isirak = IsiRak::find($id);
         $isirak->delete();
 
-        return redirect('/superadmin/isirak?id_rak=' . $id_rak)->with('success', 'IsiRak berhasil dihapus.');
+        return redirect('/superadmin/isirak?id_rak=' . $id_rak)->with('success', 'Isi Rak berhasil dihapus.');
     }
 
 }

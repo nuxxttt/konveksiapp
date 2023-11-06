@@ -1,5 +1,4 @@
 @extends('layouts.vertical', ['title' => 'Daftar Barang', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
-
 @section('content')
 @section('css')
     @vite([
@@ -21,11 +20,19 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Daftar Barang</h4>
-                <div class="button mt-2">
-                    <a href="{{ route('barang.create') }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="header-title">Daftar Barang</h4>
+                        <div class="button mt-2">
+                            <a href="{{ route('barang.create') }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                        </div>
+                    </div>
+                    @include('layouts.notifications')
                 </div>
+
+
             </div>
+
             <div class="card-body">
                 <div class="responsive-table-plugin">
                     <div class="">
@@ -43,7 +50,7 @@
                                         <th>Stok</th>
                                         <th>Keterangan</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

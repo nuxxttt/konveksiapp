@@ -22,9 +22,14 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Satuan</h4>
-                <div class="button mt-2">
-                    <a href="/{{$role}}/satuan/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="header-title">Data Satuan</h4>
+                        <div class="button mt-2">
+                            <a href="/{{$role}}/satuan/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                        </div>
+                    </div>
+                    @include('layouts.notifications')
                 </div>
             </div>
             <div class="card-body">

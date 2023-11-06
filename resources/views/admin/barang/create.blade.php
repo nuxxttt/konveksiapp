@@ -1,4 +1,5 @@
 @extends('layouts.vertical', ['title' => 'Tambah Barang', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@include('layouts.notification')
 
 @section('content')
 <div class="container">

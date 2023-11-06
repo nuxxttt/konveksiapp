@@ -43,7 +43,7 @@ class ProduksiController extends Controller
 
             Produksi::create($requestData);
 
-            return redirect()->route('produksi.index')->with('success', 'Barang berhasil disimpan.');
+            return redirect()->route('produksi.index')->with('success', 'Berhasil menambahkan data produksi baru.');
 
     }
 
@@ -77,7 +77,7 @@ class ProduksiController extends Controller
         $produksi = Produksi::find($id);
         $produksi->update($request->except('_token'));
 
-        return redirect()->route('produksi.index')->with('success', 'Barang berhasil diperbarui.');
+        return redirect()->route('produksi.index')->with('success', 'Data Produksi berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -85,6 +85,6 @@ class ProduksiController extends Controller
         $produksi = Produksi::find($id);
         $produksi->delete();
 
-        return redirect()->route('produksi.index')->with('success', 'Barang berhasil dihapus.');
+        return redirect()->route('produksi.index')->with('success', 'Data Produksi berhasil dihapus.');
     }
 }

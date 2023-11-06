@@ -14,7 +14,7 @@ import 'jquery-toast-plugin'
     var NotificationApp = function () { };
 
     NotificationApp.prototype.send = function (heading, body, position, loaderBgColor, icon, hideAfter, stack, showHideTransition) {
-        // default      
+        // default
         if (!hideAfter)
             hideAfter = 3000;
         if (!stack)

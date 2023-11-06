@@ -27,7 +27,7 @@ class RakController extends Controller
 
         Rak::create($request->all());
 
-        return redirect()->route('rak.index')->with('success', 'Rak created successfully.');
+        return redirect()->route('rak.index')->with('success', 'Berhasil menambahkan Data Rak baru');
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class RakController extends Controller
         $rak = Rak::find($id);
         $rak->update($request->all());
 
-        return redirect()->route('rak.index')->with('success', 'Rak updated successfully.');
+        return redirect()->route('rak.index')->with('success', 'Data Rak berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -59,7 +59,7 @@ class RakController extends Controller
         $rak = Rak::find($id);
         $rak->delete();
 
-        return redirect()->route('rak.index')->with('success', 'Rak berhasil dihapus.');
+        return redirect()->route('rak.index')->with('success', 'Data Rak berhasil dihapus.');
     }
 
 }

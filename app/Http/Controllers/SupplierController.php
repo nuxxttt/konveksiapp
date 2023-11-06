@@ -29,7 +29,7 @@ class SupplierController extends Controller
 
         Supplier::create($request->all());
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier created successfully.');
+        return redirect()->route('supplier.index')->with('success', 'Berhasil menambahkan data Supplier baru.');
     }
 
     public function show($id)
@@ -55,7 +55,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
         $supplier->update($request->all());
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier updated successfully.');
+        return redirect()->route('supplier.index')->with('success', 'Data Supplier berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -63,7 +63,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
         $supplier->delete();
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier berhasil dihapus.');
+        return redirect()->route('supplier.index')->with('success', 'Data Supplier berhasil dihapus');
     }
 
 }

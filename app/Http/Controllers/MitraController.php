@@ -31,7 +31,7 @@ class MitraController extends Controller
 
         Mitra::create($request->all());
 
-        return redirect()->route('mitra.index')->with('success', 'Mitra created successfully.');
+        return redirect()->route('mitra.index')->with('success', 'Berhasil menambahkan Data Mitra Baru.');
     }
 
     public function show($id)
@@ -61,7 +61,7 @@ class MitraController extends Controller
         $mitra = Mitra::find($id);
         $mitra->update($request->all());
 
-        return redirect()->route('mitra.index')->with('success', 'Mitra updated successfully.');
+        return redirect()->route('mitra.index')->with('success', 'Data Mitra berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -69,7 +69,7 @@ class MitraController extends Controller
         $mitra = Mitra::find($id);
         $mitra->delete();
 
-        return redirect()->route('mitra.index')->with('success', 'Mitra berhasil dihapus.');
+        return redirect()->route('mitra.index')->with('success', 'Data Mitra berhasil dihapus.');
     }
 
 }

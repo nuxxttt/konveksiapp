@@ -1,4 +1,6 @@
 @extends('layouts.vertical', ['title' => 'Mitra'])
+@include('layouts.notification')
+
 @section('css')
     @vite([
         'node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css',

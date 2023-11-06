@@ -30,7 +30,7 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="supplier_id" class "form-label">Supplier:</label>
+                            <label for="supplier_id" class="form-label">Supplier:</label>
                             <select name="supplier_id" class="form-select select2">
                                 @foreach($suppliers as $supplier)
                                     @if($supplier->id == $barang->supplier_id)

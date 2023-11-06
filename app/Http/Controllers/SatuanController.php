@@ -27,7 +27,7 @@ class SatuanController extends Controller
 
         Satuan::create($request->all());
 
-        return redirect()->route('satuan.index')->with('success', 'Satuan created successfully.');
+        return redirect()->route('satuan.index')->with('success', 'Berhasil membuat satuan baru.');
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class SatuanController extends Controller
         $satuan = Satuan::find($id);
         $satuan->update($request->all());
 
-        return redirect()->route('satuan.index')->with('success', 'Satuan updated successfully.');
+        return redirect()->route('satuan.index')->with('success', 'Satuan berhasil diperbarui.');
     }
 
     public function destroy($id)

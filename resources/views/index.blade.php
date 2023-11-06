@@ -5,7 +5,13 @@ use App\Models\Category;
 use App\Models\Mitra;
 
 
-$crkain = Category::where('product', 'Kain')->get()->first()->id;
+$crkain = Category::where('product', 'Kain')->first();
+
+if ($crkain) {
+    $crkainId = $crkain->id;
+} else {
+    $crkainId = 0;
+}
 $jml = Barang::where('category_id', $crkain);
 $mitra = Mitra::all()->count();
 @endphp

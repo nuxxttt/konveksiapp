@@ -1,4 +1,5 @@
 @extends('layouts.vertical', ['title' => 'Daftar Kategori', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
 @php
     $role = auth()->user()->role;
 @endphp
@@ -15,16 +16,23 @@
 @endsection
     @php
         use App\Models\Category;
+
         $index = 1;
     @endphp
 @section('content')
+
 <div class="row mt-xl-3">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Kategori</h4>
-                <div class="button mt-2">
-                    <a href="/{{$role}}/category/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h4 class="header-title">Data Kategori</h4>
+                        <div class="button mt-2">
+                            <a href="/{{$role}}/category/create" class="btn btn-primary rounded-pill">Tambah Data</a>
+                        </div>
+                    </div>
+                    @include('layouts.notifications')
                 </div>
             </div>
             <div class="card-body">

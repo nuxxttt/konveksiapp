@@ -15,6 +15,10 @@
 @endsection
     @php
         use App\Models\IsiRak;
+        use App\Models\Rak;
+
+        $crnm = Rak::where('id', "{$id_rak}")->get()->first()->nama;
+
         $index = 1;
     @endphp
 @section('content')
@@ -22,10 +26,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="header-title">Data Rak</h4>
-                <div class="button mt-2">
-                    <a href="/{{$role}}/isirak/create?id_rak={{ $id_rak }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h4 class="header-title">{{$crnm}}</h4>
+                        <div class="button mt-2">
+                            <a href="/{{$role}}/isirak/create?id_rak={{ $id_rak }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                        </div>
+                    </div>
+                    @include('layouts.notifications')
+
                 </div>
+
             </div>
             <div class="card-body">
                 <div class="responsive-table-plugin">
