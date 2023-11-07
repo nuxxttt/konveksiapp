@@ -61,10 +61,15 @@ foreach ($roles as $roless) {
         Route::resource('rak', RakController::class);
         Route::resource('satuan', SatuanController::class);
         Route::resource('isirak', IsiRakController::class);
+        Route::resource('history', HistoryController::class);
         Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
         Route::get('penjualan/create', [HistoryController::class, 'penjualan_create'])->name('admin.penjualan.create');
         Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
         Route::put('settings', [SettingsController::class, 'update'])->name('admin.settings.update');
+        Route::get('penjualan', [HistoryController::class, 'index'])->name('penjualan.index');
+        Route::get('pembelian', [HistoryController::class, 'index'])->name('pembelian.index');
+
+
 
     });
 };

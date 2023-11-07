@@ -50,7 +50,7 @@
                 $role = auth()->user()->role;
             @endphp
         <li class="side-nav-item">
-            <a href="{{ route("any", "$role/barang/create") }}" class="side-nav-link">
+            <a href="{{ route("any", "$role/pembelian/create") }}" class="side-nav-link">
                 <i class="  ri-shopping-cart-line"></i>
                 <span> Input Barang</span>
             </a>
@@ -143,7 +143,10 @@
                     <div class="collapse" id="sidebarChartss">
                         <ul class="side-nav-second-level">
                             <li>
-                                <a href="{{ route('second', ["$role", 'barang']) }}">Barang</a>
+                                <a href="{{ route('second', ["$role", 'penjualan']) }}">Penjualan</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('second', ["$role", 'pembelian']) }}">Pembelian</a>
                             </li>
                         </ul>
                     </div>

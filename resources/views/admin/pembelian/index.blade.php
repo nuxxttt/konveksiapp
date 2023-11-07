@@ -22,9 +22,8 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="header-title">Histori Barang Terjual</h4>
+                        <h4 class="header-title">Daftar Barang Masuk</h4>
                     </div>
-                    @include('layouts.notifications')
                 </div>
             </div>
             <div class="card-body">
@@ -40,31 +39,31 @@
                                         <th>Harga Pokok</th>
                                         <th>Harga Jual</th>
                                         <th>Kuantitas</th>
-                                        <th>Action</th> {{-- Added a new column for the Details button --}}
+                                        <th></th> {{-- Added a new column for the Details button --}}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($penjualans as $penjualan)
+                                    @foreach($pembelians as $pembelian)
                                     <tr>
-                                        <td>{{ $penjualan->id }}</td>
+                                        <td>{{ $pembelian->id }}</td>
                                         <td>
                                             @foreach($barangs as $barang)
-                                            @if($barang->kode_barang == $penjualan->kode_barang)
+                                            @if($barang->kode_barang == $pembelian->kode_barang)
                                                 {{ $barang->judul }}
                                             @endif
                                             @endforeach</td>
                                         <td>
                                             @foreach($kategorys as $kategori)
-                                            @if($kategori->id == $penjualan->category_id)
+                                            @if($kategori->id == $pembelian->category_id)
                                                 {{ $kategori->product }}
                                             @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ 'Rp. ' . number_format($penjualan->harga_pokok, 2, ',', '.'); }}</td>
-                                        <td>{{ 'Rp. ' . number_format($penjualan->harga_jual, 2, ',', '.'); }}</td>
-                                        <td>{{ $penjualan->stok }}</td>
+                                        <td>{{ 'Rp. ' . number_format($pembelian->harga_pokok, 2, ',', '.'); }}</td>
+                                        <td>{{ 'Rp. ' . number_format($pembelian->harga_jual, 2, ',', '.'); }}</td>
+                                        <td>{{ $pembelian->stok }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $penjualan->id }}"><i class="ri-eye-line"></i></button>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $pembelian->id }}"><i class="ri-eye-line"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -77,14 +76,15 @@
         </div> <!-- end card -->
     </div><!-- end col -->
 </div>
-@foreach($penjualans as $penjualan)
-<div id="standard-modal{{ $penjualan->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+
+@foreach($pembelians as $pembelian)
+<div id="standard-modal{{ $pembelian->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <p><strong>Supplier:</strong> {{ $penjualan->supplier->supplier }}</p>
-                <p><strong>Kode Transaksi:</strong> {{ $penjualan->kode_transaksi }}</p>
-                <p><strong>Waktu:</strong> {{ $penjualan->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s') }}</p>
+                <p><strong>Supplier:</strong> {{ $pembelian->supplier->supplier }}</p>
+                <p><strong>Kode Transaksi:</strong> {{ $pembelian->kode_transaksi }}</p>
+                <p><strong>Waktu:</strong> {{ $pembelian->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s') }}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -95,12 +95,6 @@
 @endforeach
 @endsection
 
-
-                    <!-- Standard modal content -->
-
-<!-- end Modals for Details -->
-
-@endsection
 
 @section('script')
 @vite([

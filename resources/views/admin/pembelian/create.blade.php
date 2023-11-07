@@ -267,9 +267,9 @@ function sendPenjualanDataToServer(data) {
             harga_pokok: row[5], // Harga Satuan
             harga_jual: row[6], // Harga Total
             stok: row[1], // Jumlah
-            status: "jual",
+            status: "beli",
             kode_transaksi: generateRandomString(), // Random string generation
-            keterangan: "penjualan"
+            keterangan: "pembelian"
         };
     });
 

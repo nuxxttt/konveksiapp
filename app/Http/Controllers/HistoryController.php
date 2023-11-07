@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Supplier;
 use App\Models\Category;
+use App\Models\History;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
-
+use Illuminate\Support\Str; // Import Str from Illuminate\Support
 class HistoryController extends Controller
 {
     public function index()
@@ -17,8 +18,16 @@ class HistoryController extends Controller
         $barangs = Barang::all();
         $suppliers = Supplier::all();
         $kategorys = Category::all();
-        return view('admin.barang.index', compact('barangs', 'suppliers', 'kategorys'));
 
+        if (Str::contains(url()->current(), 'pembelian')) {
+            // If the current URL contains 'pembelian'
+            $pembelians = History::where('status', 'beli')->get();
+            return view('admin.pembelian.index', compact('barangs', 'suppliers', 'kategorys', 'pembelians'));
+        } else {
+            // Default to 'penjualan' view
+            $penjualans = History::where('status', 'jual')->get();
+            return view('admin.penjualan.index', compact('barangs', 'suppliers', 'kategorys', 'penjualans'));
+        }
     }
 
     public function penjualan_create()

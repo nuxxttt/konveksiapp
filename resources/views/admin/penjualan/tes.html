@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Data Using jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<script>
+$(document).ready(function() {
+    // Data to be sent in the POST request
+    var postData = [
+        {
+            kode_barang: "B001",
+            category_id: "1",
+            supplier_id: "1",
+            harga_pokok: "10000",
+            harga_jual: "3243240000",
+            stok: "324324",
+            status: "beli",
+            kode_transaksi: "Pr0PGoZxu3",
+            keterangan: "pembelian"
+        },
+        {
+            kode_barang: "B002",
+            category_id: "1",
+            supplier_id: "1",
+            harga_pokok: "12000",
+            harga_jual: "290808000",
+            stok: "24234",
+            status: "beli",
+            kode_transaksi: "PHeImruera",
+            keterangan: "pembelian"
+        }
+    ];
+
+    // Function to send a single array element
+    function sendPostRequest(data) {
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/history', // Replace with your actual API endpoint
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(response) {
+                console.log('Data sent successfully:', response);
+            },
+            error: function(error) {
+                console.error('Error sending data:', error);
+            }
+        });
+    }
+
+    // Loop through the postData array and send each element separately
+    for (var i = 0; i < postData.length; i++) {
+        sendPostRequest(postData[i]);
+    }
+});
+</script>
+
+</body>
+</html>

@@ -6,6 +6,7 @@ use App\Http\Controllers\MitraApiController;
 use App\Http\Controllers\BarangApiController;
 use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\SupplierApiController;
+use App\Http\Controllers\HistoryApiController;
 use App\Models\Barang;
 use App\Models\Mitra;
 
@@ -14,3 +15,4 @@ use App\Models\Mitra;
     Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::resource('mitra', MitraApiController::class);
     Route::resource('supplier', SupplierApiController::class);
+    Route::resource('history', HistoryApiController::class);

@@ -1,5 +1,5 @@
 @extends('layouts.vertical', ['title' => 'Daftar Supplier'])
-
+@include('layouts.notification')
 @section('content')
     <div class="row mt-xl-3">
         <div class="col-12">
