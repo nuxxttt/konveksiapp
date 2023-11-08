@@ -18,7 +18,7 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="supplier" class="form-label">Jumlah:</label>
+                            <label for="jumlah" class="form-label">Jumlah:</label>
                             <input type="number" class="jml form-control" name="supplier" required>
                         </div>
                         <div class="form-group mb-3">

@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangApiController;
 use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\SupplierApiController;
 use App\Http\Controllers\HistoryApiController;
+use App\Http\Controllers\DistribusiApiController;
 use App\Models\Barang;
 use App\Models\Mitra;
 
@@ -16,3 +17,4 @@ use App\Models\Mitra;
     Route::resource('mitra', MitraApiController::class);
     Route::resource('supplier', SupplierApiController::class);
     Route::resource('history', HistoryApiController::class);
+    Route::resource('distribusi', DistribusiApiController::class);

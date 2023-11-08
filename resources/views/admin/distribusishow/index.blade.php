@@ -43,7 +43,7 @@
                                                 <td>{{ $mitra->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('distribusi.edit', $mitra->id) }}" class="me-1">
+                                                        <a href="{{ route('distribusi.show', $mitra->id) }}" class="me-1">
                                                             <button type="submit" class="btn btn-primary"><i class="ri-eye-line"></i></button>
                                                         </a>
                                                     </div>

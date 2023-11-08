@@ -98,7 +98,7 @@
                 </div>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route("any", "$role/kontigen") }}" class="side-nav-link">
+                <a href="{{ route("any", "$role/distribusi") }}" class="side-nav-link">
                     <i class=" ri-p2p-fill"></i>
                     <span> Distribusi Kain Mitra </span>
                 </a>
@@ -147,6 +147,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('second', ["$role", 'pembelian']) }}">Pembelian</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('second', ["$role", 'distribusihistory']) }}">Distribusi Kain Mitra</a>
                             </li>
                         </ul>
                     </div>

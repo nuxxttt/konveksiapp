@@ -33,9 +33,7 @@
                         <label for="nama_barang" class="form-label">Nama Barang:</label>
                         <select name="nama_barang" id="nama_barang" class="form-control select2" required>
                             @foreach($barang as $barangg)
-                                @if (!in_array($barangg->judul, $itemsInIsiRak))
                                     <option value="{{ $barangg->id }}">{{ $barangg->judul }}</option>
-                                @endif
                             @endforeach
                         </select>
                     </div>

@@ -8,7 +8,7 @@ use App\Models\Mitra;
 use App\Models\Barang;
 use Illuminate\Support\Facades\DB;
 
-class DistribusiController extends Controller
+class Distribusi2Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class DistribusiController extends Controller
     {
         $distribusiData = Distribusi::all();
         $mitras= Mitra::all();
-        return view('admin.distribusi.index', compact('distribusiData', 'mitras'));
+        return view('admin.distribusishow.index', compact('distribusiData', 'mitras'));
     }
 
     /**
