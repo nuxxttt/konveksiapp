@@ -68,9 +68,9 @@
                         </table>
                     </div>
                     <div class="col-lg-12">
-                        <button id="kirimDataButton" class="btn btn-primary me-3">Kirim Data</button>
+                        <button id="kirimDataButton" class="btn btn-primary">Kirim Data</button>
 
-                        <button id="hapusisitabel" class="btn btn-danger">Hapus Data</button>
+                        <button id="hapusisitabel" class="btn btn-danger ms-3">Hapus Data</button>
                     </div>
             </form>
         </div>

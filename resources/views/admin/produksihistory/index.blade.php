@@ -81,9 +81,6 @@
 
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('produksi.edit', $produksi->id) }}" class="me-1 ">
-                                                    <button type="submit" class="btn btn-primary rounded-pill"><i class="ri-edit-line"></i></button>
-                                                </a>
 
                                                 <form action="{{ route('produksi.destroy', $produksi->id) }}" method="POST">
                                                     @csrf

@@ -1,16 +1,19 @@
-@extends('layouts.vertical', ['title' => 'Tambah Barang', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Edit Mitra', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
 <div class="container">
-    @include('layouts.shared/page-title', ['sub_title' => 'Penjualan', 'page_title' => 'Tambah Penjualan'])
+    @include('layouts.shared/page-title', ['sub_title' => 'Mitra', 'page_title' => 'Edit Mitra'])
 
-    <div class="card">
+    <div class="card"> <!-- Center align the card -->
         <div class="card-body">
-            <form method="POST" action="{{ route('history.store') }}">
+            <form method="POST" action="{{ route('distribusi.create') }}">
                 @csrf
+                @method('POST')
+
                 <div class="row">
+                    <div class="col-lg-12">
+                    </div>
                     <div class="col-md-6">
-<!-- Add this HTML code inside your form -->
                         <div class="form-group mb-3">
                             <label for="judul" class="form-label">Judul:</label>
                             <select class="select2 form-select" id="judulSelector" name="judul" id="product-name-input">
@@ -22,19 +25,9 @@
                             <input type="number" class="jml form-control" name="supplier" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="category" class="form-label">Kategori:</label>
-                            <input type="text" class="category form-control" name="category" required>
+                            <label for="stok" class="form-label">Stok:</label>
+                            <input type="text" class="stok form-control" name="stok" required>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="supplier" class="form-label">Supplier:</label>
-                            <input type="text" class="supplier form-control" name="supplier" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <!-- Display the selected "Judul" here -->
-                            <label for="selected-judul" class="form-label">Stok Sekarang:</label>
-                            <span id="stok"></span>
-                        </div>
-
                     </div>
                     <div class="col-md-6">
                         <div class="form-group mb-3">
@@ -42,18 +35,19 @@
                             <input type="text" class="kode_produk form-control" name="kode_produk" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="satuan" class="form-label">Harga Satuan:</label>
-                            <input type="text" class="satuan form-control" name="satuan" required>
+                            <label for="supplier" class="form-label">Supplier:</label>
+                            <input type="text" class="supplier form-control" name="supplier" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="total" class="form-label">Harga Total:</label>
-                            <input type="text" class="total form-control" name="total" required>
+                            <label for="category" class="form-label">Kategori:</label>
+                            <input type="text" class="category form-control" name="category" required>
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <button id="simpanButton" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <table id="temporary-table" class="table">
@@ -61,11 +55,10 @@
                                 <tr>
                                     <th>Judul</th>
                                     <th>Jumlah</th>
-                                    <th>Kategori</th>
-                                    <th>Supplier</th>
+                                    <th>Stok</th>
                                     <th>Kode Produk</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Harga Total</th>
+                                    <th>Supplier</th>
+                                    <th>Kategori</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,23 +70,12 @@
                         <button id="kirimDataButton" class="btn btn-primary">Kirim Data</button>
 
                         <button id="hapusisitabel" class="btn btn-danger ms-3">Hapus Data</button>
-
                     </div>
-                </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
-
-<style>
-    .logo-lg {
-        display: none;
-    }
-    .logo-dark {
-        display: none;
-    }
-</style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -113,11 +95,12 @@ function filterAndDisplayData() {
         var categoryInput = $('.category');
         var supplierInput = $('.supplier');
         var satuan = $('.satuan');
+        var stok = $('.stok');
         var kode_produk = $('.kode_produk');
         var total = $('.total');
-
         var jml = $('.jml').val();
 
+        console.log(selectedItem.stok)
         detailDiv.empty();
         var harga = parseInt(selectedItem.harga_jual);
 
@@ -129,16 +112,12 @@ function filterAndDisplayData() {
             supplierInput.val(supplierName);
         });
 
-        getSatuanName(selectedItem.satuan).then(function(satuanName) {
-            $('#stok').text(selectedItem.stok + " " + satuanName);
+        getSatuanName(selectedItem.supplier_id).then(function(supplierName) {
+            stok.val(selectedItem.stok + " " + supplierName);
         });
 
-        satuan.val(harga);
         kode_produk.val(selectedItem.kode_barang);
-        if (jml) {
-            var totalHarga = harga * parseInt(jml);
-            total.val(totalHarga);
-        }
+        stok.val(selectedItem.stok);
     }
 }
 
@@ -150,23 +129,6 @@ function getCategoryName(categoryId) {
             dataType: 'json',
             success: function(data) {
                 resolve(data.product);
-            },
-            error: function(error) {
-                reject(error);
-            }
-        });
-    });
-}
-
-function getSatuanName(satuanId) {
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: '/api/satuan/' + satuanId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data); // Add this line for debugging
-                resolve(data.nama);
             },
             error: function(error) {
                 reject(error);
@@ -202,6 +164,23 @@ function generateRandomString() {
     return randomString;
 }
 
+function getSatuanName(satuanId) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: '/api/satuan/' + satuanId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data); // Add this line for debugging
+                resolve(data.nama);
+            },
+            error: function(error) {
+                reject(error);
+            }
+        });
+    });
+}
+
 $(document).ready(function() {
     // Event handler for the "Kirim Data" button and Shift+Enter
     $('body').on('keydown', function(event) {
@@ -211,9 +190,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#hapusisitabel').on('click', function(event) {
-    $('#temporary-table tbody').empty();
-})
+
 
     $('#judulSelector').select2();
     var judulSelector = $('#judulSelector');
@@ -286,19 +263,16 @@ $('#kirimDataButton').on('click', function(event) {
     sendPenjualanDataToServer(rowData);
 });
 
+$('#hapusisitabel').on('click', function(event) {
+    $('#temporary-table tbody').empty();
+})
+
 // Function to send data to the server
 function sendPenjualanDataToServer(data) {
     var modifiedData = data.map(function(row) {
         return {
-            kode_barang: row[4], // Kode Produk
-            category_id: jsonData.data.find(item => item.judul === row[0]).category_id,
-            supplier_id: jsonData.data.find(item => item.judul === row[0]).supplier_id,
-            harga_pokok: row[5], // Harga Satuan
-            harga_jual: row[6], // Harga Total
-            stok: row[1], // Jumlah
-            status: "jual",
-            kode_transaksi: generateRandomString(), // Random string generation
-            keterangan: "penjualan"
+            kode_barang: row[3], // Kode Produk
+            kuantitas: parseInt(row[1])
         };
     });
 
@@ -306,7 +280,7 @@ function sendPenjualanDataToServer(data) {
     modifiedData.forEach(function(postData) {
         // Make an AJAX POST request for each row
         $.ajax({
-            url: '/api/history', // Replace with the actual API endpoint URL
+            url: '/api/pengemasan', // Replace with the actual API endpoint URL
             type: 'POST',
             data: JSON.stringify(postData), // Convert the data to JSON format
             contentType: 'application/json', // Set the content type to JSON
@@ -331,5 +305,4 @@ function sendPenjualanDataToServer(data) {
         }
     });
 });
-
 </script>

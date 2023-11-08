@@ -22,6 +22,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProduksiHistoryController;
 use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\Distribusi2Controller;
+use App\Http\Controllers\PengemasanController;
 
 
 
@@ -55,6 +56,7 @@ $sharedRoutes = function () {
     Route::resource('supplier', SupplierController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('produksi', ProduksiController::class);
+    Route::resource('pengemasan', ProduksiController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('rak', RakController::class);
     Route::resource('satuan', SatuanController::class);
@@ -69,6 +71,8 @@ $sharedRoutes = function () {
     Route::get('pembelian', [HistoryController::class, 'index'])->name('pembelian.index');
     Route::get('distribusihistory', [Distribusi2Controller::class, 'index'])->name('distribusishow.index');
     Route::get('produksihistory', [ProduksiHistoryController::class, 'index'])->name('produksihistory.index');
+    Route::get('pengemasan/create', [PengemasanController::class, 'create'])->name('pengemasan.create');
+    Route::get('pengemasanhistory', [PengemasanController::class, 'index'])->name('pengemasan.index');
 };
 
 Route::prefix('admin')->group($sharedRoutes);

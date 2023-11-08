@@ -104,7 +104,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route("any", "$role/pesilat") }}" class="side-nav-link">
+                <a href="{{ route("any", "$role/pengemasan/create") }}" class="side-nav-link">
                     <i class="  ri-gift-line"></i>
                     <span> Pengemasan </span>
                 </a>
@@ -149,11 +149,15 @@
                                 <a href="{{ route('second', ["$role", 'pembelian']) }}">Pembelian</a>
                             </li>
                             <li>
+                                <a href="{{ route('second', ["$role", 'pengemasanhistory']) }}">Pengemasan</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('second', ["$role", 'distribusihistory']) }}">Distribusi Kain Mitra</a>
                             </li>
                             <li>
                                 <a href="{{ route('second', ["$role", 'produksihistory']) }}">Produksi</a>
                             </li>
+
                         </ul>
                     </div>
                 </li>
