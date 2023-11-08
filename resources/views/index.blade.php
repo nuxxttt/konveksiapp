@@ -3,6 +3,7 @@
 use App\Models\Barang;
 use App\Models\Category;
 use App\Models\Mitra;
+use App\Models\Rak;
 
 
 $crkain = Category::where('product', 'Kain')->first();
@@ -14,6 +15,7 @@ if ($crkain) {
 }
 $jml = Barang::where('category_id', $crkain);
 $mitra = Mitra::all()->count();
+$rak = Rak::all()->count();
 @endphp
 @section('content')
 @include('layouts.shared/page-title', ['sub_title' => 'Menu', 'page_title' => 'Dashboard'])
@@ -23,7 +25,7 @@ $mitra = Mitra::all()->count();
             <div class="card widget-flat text-bg-pink">
                 <div class="card-body">
                     <div class="float-end">
-                        <i class=" ri-school-line widget-icon"></i>
+                        <i class=" ri-file-paper-2-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Jumlah Kain </h6>
                     <h2 class="my-2">{{$jml->count()}}</h2>
@@ -68,12 +70,12 @@ $mitra = Mitra::all()->count();
             <div class="card widget-flat text-bg-primary">
                 <div class="card-body">
                     <div class="float-end">
-                        <i class=" ri-calendar-2-line widget-icon"></i>
+                        <i class=" ri-layout-row-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Jumlah Gudang</h6>
-                    <h2 class="my-2">63,154</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Jumlah Rak</h6>
+                    <h2 class="my-2">{{$rak}}</h2>
                     <p class="mb-0">
-                        <span class="text-nowrap">pcs</span>
+                        <span class="text-nowrap"></span>
                     </p>
                 </div>
             </div>

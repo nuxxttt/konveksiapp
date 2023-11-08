@@ -16,9 +16,9 @@
                             <input type="text" name="judul" class="form-control" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="category_id" class="form-label">Category:</label>
+                            <label for="category_id" class="form-label">Kategori:</label>
                             <select name="category_id" class="form-control" required>
-                                <option value="" disabled selected>Select Category</option>
+                                <option value="" disabled selected>Pilih Kategori</option>
                                 @foreach($kategorys as $kategori)
                                     <option value="{{ $kategori->id }}">{{ $kategori->product }}</option>
                                 @endforeach
@@ -27,7 +27,7 @@
                         <div class="form-group mb-3">
                             <label for="supplier_id" class="form-label">Supplier:</label>
                             <select name="supplier_id" class="form-control" required>
-                                <option value="" disabled selected>Select Supplier</option>
+                                <option value="" disabled selected>Pilih Supplier</option>
                                 @foreach($suppliers as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->supplier }}</option>
                                 @endforeach
@@ -50,6 +50,15 @@
                         <div class="form-group mb-3">
                             <label for="stok" class="form-label">Stok:</label>
                             <input type="number" name="stok" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="satuan" class="form-label">Satuan:</label>
+                            <select name="satuan" class="form-control" required>
+                                <option value="" disabled selected>Pilih Satuan</option>
+                                @foreach($satuan as $satuan)
+                                    <option value="{{ $satuan->id }}">{{ $satuan->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="status" class="form-label">Status:</label>

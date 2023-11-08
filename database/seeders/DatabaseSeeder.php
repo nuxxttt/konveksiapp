@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Barang;
 use App\Models\Category;
 use App\Models\Mitra;
+use App\Models\Supplier;
+use App\Models\satuan;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -44,6 +46,7 @@ class DatabaseSeeder extends Seeder
                 'judul' => 'Barang pertama',
                 'status' => 'Tersedia',
                 'keterangan' => 'Barang Masuk',
+                'satuan' => 1,
             ],
             [
                 'uuid' => 'DEF456',
@@ -56,6 +59,7 @@ class DatabaseSeeder extends Seeder
                 'judul' => 'Barang kedua',
                 'status' => 'Tersedia',
                 'keterangan' => 'Dari Client',
+                'satuan' => 1,
             ],
             // Tambahkan data dummy lainnya sesuai kebutuhan
         ];
@@ -72,11 +76,25 @@ class DatabaseSeeder extends Seeder
             Category::create($kategori);
         };
 
+        $satuans = [
+            ['nama' => 'kodi',],
+            ['nama' => 'roll',],
+        ];
+        foreach ($satuans as $satuan) {
+            Satuan::create($satuan);
+        };
+
         $mitras = [
             ['nama' => 'Nustra 1', 'phone' => '832472847s', 'alamat' => 'Nganjuk',],
         ];
         foreach ($mitras as $mitra) {
             Mitra::create($mitra);
+        };
+        $suppliers = [
+            ['supplier' => 'Nustra 1', 'phone' => '832472847s', 'address' => 'Nganjuk',],
+        ];
+        foreach ($suppliers as $supplier) {
+            Supplier::create($supplier);
         };
 
     }

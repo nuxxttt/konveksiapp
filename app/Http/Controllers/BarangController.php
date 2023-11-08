@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Supplier;
 use App\Models\Category;
+use App\Models\Satuan;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 
@@ -25,7 +26,8 @@ class BarangController extends Controller
     {
         $suppliers = Supplier::all();
         $kategorys = Category::all();
-        return view('admin.barang.create', compact('suppliers', 'kategorys'));
+        $satuan = Satuan::all();
+        return view('admin.barang.create', compact('suppliers', 'kategorys', 'satuan'));
     }
 
     public function store(Request $request)
@@ -37,6 +39,7 @@ class BarangController extends Controller
             'harga_jual' => 'required|numeric',
             'harga_pokok' => 'required|numeric',
             'stok' => 'required|integer',
+            'satuan' => 'required',
             'judul' => 'required|string',
             'status' => 'required|string',
             'keterangan' => 'required|string',
@@ -64,7 +67,8 @@ class BarangController extends Controller
         $barang = Barang::find($id);
         $suppliers = Supplier::all();
         $kategorys = Category::all();
-        return view('admin.barang.edit', compact('barang', 'suppliers', 'kategorys'));
+        $satuan = Satuan::all();
+        return view('admin.barang.edit', compact('barang', 'suppliers', 'kategorys', 'satuan'));
     }
 
 
@@ -78,6 +82,7 @@ class BarangController extends Controller
             'harga_jual' => 'required|numeric',
             'harga_pokok' => 'required|numeric',
             'stok' => 'required|integer',
+            'satuan' => 'required',
             'judul' => 'required|string',
             'status' => 'required|string',
             'keterangan' => 'required|string',

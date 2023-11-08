@@ -3,6 +3,8 @@
     use App\Models\IsiRak;
 
     $itemsInIsiRak = IsiRak::pluck('nama_barang')->toArray(); // Get existing items in IsiRak
+    $id = auth()->user()->id;
+
 @endphp
 
 
@@ -41,6 +43,16 @@
                         <label for="kuantitas" class="form-label">Kuantitas:</label>
                         <input type="text" required name="kuantitas" id="kuantitas" class="form-control">
                     </div>
+
+                    <div class="my-3">
+                        <label for="satuan" class="form-label">Satuan:</label>
+                        <label for="satuan" class="form-label">Satuan:</label>
+                        <select name="satuan" class="form-control" required>
+                            <option value="" disabled selected>Pilih Satuan</option>
+                            @foreach($satuan as $satuan)
+                                <option value="{{ $satuan->id }}">{{ $satuan->nama }}</option>
+                            @endforeach
+                        </select>                    </div>
 
                     <div class="mb-3">
                         <input type="hidden" name="id_rak" id="id_rak" class="form-control" value="{{ $id_rak }}">

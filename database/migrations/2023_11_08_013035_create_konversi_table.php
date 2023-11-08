@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('isi_rak', function (Blueprint $table) {
+        Schema::create('konversi', function (Blueprint $table) {
             $table->id();
-            $table->string("id_rak");
-            $table->string("nama_barang");
-            $table->string("kuantitas");
-            $table->string("satuan");
+            $table->string("satuan_id1");
+            $table->string("satuan_id2");
+            $table->string("hasil_id1");
+            $table->string("hasil_id2");
+            $table->string("nama_konversi");
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('isi_rak');
+        Schema::dropIfExists('konversi');
     }
 };

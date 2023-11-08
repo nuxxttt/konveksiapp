@@ -17,7 +17,7 @@
         use App\Models\IsiRak;
         use App\Models\Rak;
 
-        $crnm = Rak::where('id', "{$id_rak}")->get()->first()->nama;
+        $crnm = Rak::where('id', $id_rak)->first()->nama;
 
         $index = 1;
     @endphp
@@ -54,7 +54,7 @@
                                 <tbody>
                                     @php
                                         $id =auth()->user()->id;
-                                        $data = IsiRak::all();
+                                        $data = IsiRak::where('id_rak', $id_rak)->get();
 
                                     @endphp
                                     @foreach ($data as $item)
@@ -65,9 +65,15 @@
                                             @if($barangg->id == $item->nama_barang)
                                                 {{ $barangg->judul }}
                                             @endif
-                                            @endforeach</td>
+                                            @endforeach
+                                    </td>
                                             <td>
                                                 {{$item->kuantitas}}
+                                                @foreach($satuan as $satuans)
+                                            @if($satuans->id == $item->satuan)
+                                                {{ $satuans->nama }}
+                                            @endif
+                                        @endforeach
                                             </td>
                                         <td>
                                             <div class="btn-group">

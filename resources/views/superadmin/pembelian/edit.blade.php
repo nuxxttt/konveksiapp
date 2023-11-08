@@ -62,18 +62,6 @@
                             <input type="number" name="stok" class="form-control" required value="{{ $barang->stok }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="satuan" class="form-label">Satuan:</label>
-                            <select name="satuan" class="form-control" required>
-                                @foreach($satuan as $s)
-                                    @if($s->id == $barang->satuan)
-                                        <option value="{{ $s->id }}" selected>{{ $s->nama }}</option>
-                                    @else
-                                        <option value="{{ $s->id }}">{{ $s->nama }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
                             <label for="status" class="form-label">Status:</label>
                             <select name="status" class="form-control" required>
                                 @foreach($status as $s)

@@ -16,6 +16,7 @@ class Barang extends Model
         'harga_jual',
         'harga_pokok',
         'stok',
+        'satuan',
         'judul',
         'status',
         'keterangan'

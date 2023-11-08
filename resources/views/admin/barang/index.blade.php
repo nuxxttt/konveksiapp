@@ -14,6 +14,8 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+    use App\Models\Satuan;
+    $satuans = Satuan::all();
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -47,10 +49,10 @@
                                         <th>Kode Barang</th>
                                         <th>Harga Jual</th>
                                         <th>Harga Pokok</th>
-                                        <th>Stok</th>
+                                        <th>Stok/Satuan</th>
                                         <th>Keterangan</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +77,12 @@
                                         <td>{{ $barang->kode_barang }}</td>
                                         <td>{{ 'Rp. ' . number_format($barang->harga_jual, 2, ',', '.'); }}</td>
                                         <td>{{ 'Rp. ' . number_format($barang->harga_pokok, 2, ',', '.'); }}</td>
-                                        <td>{{ $barang->stok }}</td>
+                                        <td>{{ $barang->stok }}
+                                        @foreach($satuans as $satuan)
+                                            @if($satuan->id == $barang->satuan)
+                                                {{ $satuan->nama }}
+                                            @endif
+                                        @endforeach</td>
                                         <td>{{ $barang->keterangan }}</td>
                                         <td><?php
                                             if ($barang->status == 'Tersedia') {
