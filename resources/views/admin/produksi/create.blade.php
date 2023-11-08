@@ -34,9 +34,9 @@
                         <div class="form-group mb-3">
                             <label for="status" class="form-label">Status:</label>
                             <select name="status" class="form-control" required>
-                                <option value="Selesai">Selesai</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Dikirim">Dikirim</option>
+                                <option value="Selesai">Selesai</option>
                             </select>
                         </div>
                     </div>

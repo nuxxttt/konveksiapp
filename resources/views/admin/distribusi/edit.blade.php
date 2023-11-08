@@ -174,6 +174,8 @@ $(document).ready(function() {
         }
     });
 
+
+
     $('#judulSelector').select2();
     var judulSelector = $('#judulSelector');
     var inputFields = $('.form-control');

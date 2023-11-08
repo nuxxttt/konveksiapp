@@ -42,11 +42,9 @@ class DistribusiController extends Controller
     {
         $distribusiData = Distribusi::where('mitra_id', $id)->get();
         $mitras = Mitra::all();
-        $groupedDistribusiData = Distribusi::select('mitra_id', 'kode_barang', DB::raw('MIN(created_at) as created_at'))->groupBy('mitra_id', 'kode_barang')
-    ->where('created_at', '>=', now()->subSeconds(30))
-    ->get();
+        $barangs = Barang::all();
 
-        return view('admin.distribusi.history', compact('distribusiData', 'mitras', 'groupedDistribusiData'));
+        return view('admin.distribusi.history', compact('distribusiData', 'mitras', 'barangs'));
     }
 
     public function edit($id)

@@ -151,6 +151,9 @@
                             <li>
                                 <a href="{{ route('second', ["$role", 'distribusihistory']) }}">Distribusi Kain Mitra</a>
                             </li>
+                            <li>
+                                <a href="{{ route('second', ["$role", 'produksihistory']) }}">Produksi</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

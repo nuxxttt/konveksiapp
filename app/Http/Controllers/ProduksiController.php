@@ -77,6 +77,24 @@ class ProduksiController extends Controller
         $produksi = Produksi::find($id);
         $produksi->update($request->except('_token'));
 
+        if ($request->status == 'Selesai') {
+            $barangId = $request->product;
+
+            if ($barangId) {
+                $barang = Barang::find($barangId);
+
+                if ($barang) {
+                    $stokRequested = (int)$request->jumlah;
+                    $barang->stok -= $stokRequested;
+                    $barang->save();
+                } else {
+                    return redirect()->back()->with('error', 'Barang not found');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Barang ID not provided in the request');
+            }
+        }
+
         return redirect()->route('produksi.index')->with('success', 'Data Produksi berhasil diperbarui.');
     }
 

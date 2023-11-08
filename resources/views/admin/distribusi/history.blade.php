@@ -27,21 +27,26 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Mitra ID</th>
+                                        <th>Nama Barang</th>
                                         <th>Kode Barang</th>
                                         <th>Kuantitas</th>
-                                        <th>Created At</th>
+                                        <th>Ket. Waktu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($distribusiData as $distribusi)
                                         <tr>
                                             <td>{{ $distribusi->id }}</td>
-                                            <td>{{ $distribusi->mitra_id }}</td>
-                                            <td>{{ $distribusi->kode_barang }}</td>
+                                            <td>
+                                                @foreach($barangs as $barang)
+                                                @if($barang->kode_barang == $distribusi->kode_barang)
+                                                    {{ $barang->judul }}
+                                                @endif
+                                                @endforeach</td>                                            <td>{{ $distribusi->kode_barang }}</td>
                                             <td>{{ $distribusi->kuantitas }}</td>
-                                            <td>{{ $distribusi->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s') }}</td>
-                                        </tr>
+                                            <td class="date-cell">
+                                                {{ $distribusi->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d / H:i:s') }}
+                                            </td>                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

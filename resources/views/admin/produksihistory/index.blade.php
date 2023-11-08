@@ -51,7 +51,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($produksi as $produksi)
-                                    @if ($produksi->status !== 'Selesai')
+                                    @if ($produksi->status == 'Selesai')
                                     <tr>
                                         <td>{{ $produksi->id }}</td>
                                         <td>

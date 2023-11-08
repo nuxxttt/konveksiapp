@@ -4,6 +4,7 @@ use App\Models\Barang;
 use App\Models\Category;
 use App\Models\Mitra;
 use App\Models\Rak;
+use App\Models\Distribusi;
 
 
 $crkain = Category::where('product', 'Kain')->first();
@@ -13,7 +14,13 @@ if ($crkain) {
 } else {
     $crkainId = 0;
 }
-$jml = Barang::where('category_id', $crkain);
+$jml = Barang::where('category_id', $crkain->id)->count(); // Retrieve the count of 'Barang' records
+
+$mitra = Mitra::count(); // Get the count of 'Mitra' records
+$distribusi = Distribusi::sum('kuantitas');
+
+
+$rak = Rak::count(); // Get the count of 'Rak' records
 $mitra = Mitra::all()->count();
 $rak = Rak::all()->count();
 @endphp
@@ -28,7 +35,7 @@ $rak = Rak::all()->count();
                         <i class=" ri-file-paper-2-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Jumlah Kain </h6>
-                    <h2 class="my-2">{{$jml->count()}}</h2>
+                    <h2 class="my-2">{{$jml}}</h2>
                     <p class="mb-0">
                         <span class="text-nowrap">Roll</span>
                     </p>
@@ -43,7 +50,7 @@ $rak = Rak::all()->count();
                         <i class=" ri-user-fill widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Kain Yang Terdistribusi</h6>
-                    <h2 class="my-2">9,254</h2>
+                    <h2 class="my-2">{{ number_format($distribusi) }}</h2>
                     <p class="mb-0">
                         <span class="text-nowrap">Pcs</span>
                     </p>

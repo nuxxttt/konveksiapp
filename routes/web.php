@@ -19,6 +19,7 @@ use App\Http\Controllers\IsiRakController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ProduksiHistoryController;
 use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\Distribusi2Controller;
 
@@ -67,6 +68,7 @@ $sharedRoutes = function () {
     Route::get('penjualan', [HistoryController::class, 'index'])->name('penjualan.index');
     Route::get('pembelian', [HistoryController::class, 'index'])->name('pembelian.index');
     Route::get('distribusihistory', [Distribusi2Controller::class, 'index'])->name('distribusishow.index');
+    Route::get('produksihistory', [ProduksiHistoryController::class, 'index'])->name('produksihistory.index');
 };
 
 Route::prefix('admin')->group($sharedRoutes);

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @include('layouts.shared/page-title', ['sub_title' => 'Penjualan', 'page_title' => 'Tambah Penjualan'])
+    @include('layouts.shared/page-title', ['sub_title' => 'Pembelian', 'page_title' => 'Tambah Pembelian'])
 
     <div class="card">
         <div class="card-body">
@@ -31,8 +31,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <!-- Display the selected "Judul" here -->
-                            <label for="selected-judul" class="form-label">Selected Judul:</label>
-                            <span id="selectedJudul"></span>
+                            <label for="selected-judul" class="form-label">Stok Sekarang:</label>
+                            <span id="stok"></span>
                         </div>
 
                     </div>
@@ -110,6 +110,7 @@ function filterAndDisplayData() {
         var categoryInput = $('.category');
         var supplierInput = $('.supplier');
         var satuan = $('.satuan');
+        $('#stok').text(selectedItem.stok);
         var kode_produk = $('.kode_produk');
         var total = $('.total');
         var jml = $('.jml').val();
@@ -124,6 +125,7 @@ function filterAndDisplayData() {
         getSupplierName(selectedItem.supplier_id).then(function(supplierName) {
             supplierInput.val(supplierName);
         });
+        stok.append(selectedItem.stok);
 
         satuan.val(harga);
         kode_produk.val(selectedItem.kode_barang);
