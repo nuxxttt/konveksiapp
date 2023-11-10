@@ -286,7 +286,7 @@ function sendPenjualanDataToServer(data) {
 
     Swal.fire({
         title: 'Transaksi Penjualan Berhasil',
-        text: 'Ingin Cetak Bukti Transaksi?',
+        text: 'Unduh Bukti Transaksi?',
         icon: 'success',
         showCancelButton: true,
         confirmButtonText: 'Ya',
@@ -294,7 +294,7 @@ function sendPenjualanDataToServer(data) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Redirect to the new page with the transaction ID
-            window.location.href = '/cetakpdf/' + kode_transaksi + '?page=pembelian';
+            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota Pembelian';
         }
     });
 

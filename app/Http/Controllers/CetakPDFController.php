@@ -26,22 +26,35 @@ class CetakPDFController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $kode_transaksi)
+    public function show(Request $request, string $kode_transaksi)
     {
-        if ($kode_transaksi != 'jual' && $kode_transaksi != 'beli') {
+        // Get the value of the "title" parameter from the URL
+        $title = $request->input('title');
+
+        if ($kode_transaksi != 'alljual' && $kode_transaksi != 'allbeli') {
             $data = History::where('kode_transaksi', $kode_transaksi)->get();
 
-            $pdf = PDF::loadView('admin.receipt', compact('data'));
+            $pdf = PDF::loadView('admin.receipt', compact('data', 'title'));
 
-            return $pdf->download('receipt.pdf');
+            // Use the $title variable in the PDF filename
+            $filename = $kode_transaksi . '.pdf';
         } else {
             $data = History::where('status', $kode_transaksi)->get();
 
-            $pdf = PDF::loadView('admin.receipt', compact('data'));
+            $pdf = PDF::loadView('admin.receiptall', compact('data', 'title'));
 
-            return $pdf->download('receipt.pdf');
+            // Use the $title variable in the PDF filename
+            $filename = $kode_transaksi . '.pdf';
         }
+
+        // Download the PDF
+        $response = $pdf->download($filename);
+
+        // Redirect back to the previous page
+        return $response->header('Refresh', '0;url=' . url()->previous());
     }
+
+
 
     /**
      * Update the specified resource in storage.
