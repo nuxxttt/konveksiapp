@@ -23,6 +23,7 @@ use App\Http\Controllers\ProduksiHistoryController;
 use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\Distribusi2Controller;
 use App\Http\Controllers\PengemasanController;
+use App\Http\Controllers\KonversiController;
 
 
 
@@ -63,6 +64,7 @@ $sharedRoutes = function () {
     Route::resource('isirak', IsiRakController::class);
     Route::resource('history', HistoryController::class);
     Route::resource('distribusi', DistribusiController::class);
+    Route::get('/konversi', [KonversiController::class, 'konversiSatuan']);
     Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
     Route::get('penjualan/create', [HistoryController::class, 'penjualan_create'])->name('admin.penjualan.create');
     Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');

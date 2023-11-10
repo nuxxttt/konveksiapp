@@ -94,6 +94,7 @@
         display: none;
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -268,6 +269,7 @@ $('#kirimDataButton').on('click', function(event) {
 
 // Function to send data to the server
 function sendPenjualanDataToServer(data) {
+    var kode_transaksi = generateRandomString()
     var modifiedData = data.map(function(row) {
         return {
             kode_barang: row[4], // Kode Produk
@@ -277,10 +279,25 @@ function sendPenjualanDataToServer(data) {
             harga_jual: row[6], // Harga Total
             stok: row[1], // Jumlah
             status: "beli",
-            kode_transaksi: generateRandomString(), // Random string generation
+            kode_transaksi: kode_transaksi, // Random string generation
             keterangan: "pembelian"
         };
     });
+
+    Swal.fire({
+        title: 'Transaksi Penjualan Berhasil',
+        text: 'Ingin Cetak Bukti Transaksi?',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to the new page with the transaction ID
+            window.location.href = '/penjualan?id=' + kode_transaksi;
+        }
+    });
+
 
     // Loop through the modified data and send each array separately
     modifiedData.forEach(function(postData) {
