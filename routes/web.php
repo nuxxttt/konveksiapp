@@ -24,6 +24,7 @@ use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\Distribusi2Controller;
 use App\Http\Controllers\PengemasanController;
 use App\Http\Controllers\KonversiController;
+use App\Http\Controllers\CetakPDFController;
 
 
 
@@ -63,6 +64,7 @@ $sharedRoutes = function () {
     Route::resource('satuan', SatuanController::class);
     Route::resource('isirak', IsiRakController::class);
     Route::resource('history', HistoryController::class);
+    Route::resource('cetakpdf', CetakPDFController::class);
     Route::resource('distribusi', DistribusiController::class);
     Route::get('/konversi', [KonversiController::class, 'konversiSatuan']);
     Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
