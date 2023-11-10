@@ -279,6 +279,7 @@ function sendPenjualanDataToServer(data) {
             harga_jual: row[6], // Harga Total
             stok: row[1], // Jumlah
             status: "beli",
+            created_by: {{auth()->user()->id}},
             kode_transaksi: kode_transaksi, // Random string generation
             keterangan: "pembelian"
         };

@@ -204,6 +204,7 @@ function generateRandomString() {
 }
 
 $(document).ready(function() {
+    console.log({{auth()->user()->id}})
     // Event handler for the "Kirim Data" button and Shift+Enter
     $('body').on('keydown', function(event) {
         if (event.key === 'Enter' && event.shiftKey) {
@@ -299,10 +300,12 @@ function sendPenjualanDataToServer(data) {
             harga_jual: row[6], // Harga Total
             stok: row[1], // Jumlah
             status: "jual",
+            created_by: {{ auth()->user()->id }},
             kode_transaksi: kode_transaksi, // Random string generation
             keterangan: "penjualan"
         };
     });
+
 
     Swal.fire({
         title: 'Transaksi Penjualan Berhasil',

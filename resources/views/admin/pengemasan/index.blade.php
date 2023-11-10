@@ -17,6 +17,8 @@
     use App\Models\Barang;
     use App\Models\Satuan;
     $satuans = Satuan::all();
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -26,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="button mt-2">
-                            <a href="{{ route('barang.create') }}" class="btn btn-primary rounded-pill">Histori Pengemasan</a>
+                            <a href="{{ route('pengemasan.create') }}" class="btn btn-primary rounded-pill">Tambah Pengemasan</a>
                         </div>
                     </div>
                     @include('layouts.notifications')
@@ -48,8 +50,8 @@
                                         <th>Harga Pokok</th>
                                         <th>Harga Jual</th>
                                         <th>Kuantitas</th>
+                                        <th>Created By</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,6 +69,12 @@
                                         <td>{{$pengemasans->kuantitas}} @foreach($satuans as $satuan)
                                             @if($satuan->id == Barang::where('kode_barang', $pengemasans->kode_barang)->first()->satuan)
                                                 {{ $satuan->nama }}
+                                            @endif
+                                        @endforeach</td>
+                                        <td>
+                                            @foreach($user as $users)
+                                            @if($users->id == $pengemasans->created_by)
+                                                {{ $users->name }}
                                             @endif
                                         @endforeach</td>
                                         <td>

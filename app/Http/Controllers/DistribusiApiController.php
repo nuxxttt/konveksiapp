@@ -19,6 +19,7 @@ class DistribusiApiController extends Controller
     {
         $request->validate([
             'mitra_id' => 'required',
+            'created_by' => 'required',
             'kode_barang' => 'required',
             'kuantitas' => 'required|numeric',
         ]);
@@ -27,7 +28,6 @@ class DistribusiApiController extends Controller
         $barang = Barang::where('kode_barang', $request->kode_barang)->first();
 
         if ($barang) {
-            // Get the quantity from the request
             $kuantitas = (int)$request->kuantitas;
 
             // Check if there is enough stock
@@ -39,6 +39,7 @@ class DistribusiApiController extends Controller
                 // Create a new Distribusi entry
                 Distribusi::create([
                     'mitra_id' => $request->mitra_id,
+                    'created_by' => $request->created_by,
                     'kode_barang' => $request->kode_barang,
                     'kuantitas' => $kuantitas,
                 ]);

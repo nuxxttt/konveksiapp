@@ -89,8 +89,10 @@ h1, h2 {
     </header>
     <section class="customer-info">
       <h4>Pemesanan Tanggal:</h4>
-      <p>{{ $data->first()->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d / H:i:s') }}</p>
-    </section>
+      @if ($data && $data->first())
+      <p>{{ $data->first()->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d / H:i') }}</p>
+  @endif
+      </section>
     <section class="order-details">
       <h3>Order Details</h3>
       @php

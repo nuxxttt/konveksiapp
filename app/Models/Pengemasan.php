@@ -11,6 +11,7 @@ class Pengemasan extends Model
     protected $table = 'pengemasanhistory';
     protected $fillable = [
         'kode_barang',
+        'created_by',
         'kuantitas'
     ];
 }

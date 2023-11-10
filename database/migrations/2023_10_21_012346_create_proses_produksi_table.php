@@ -16,6 +16,7 @@ class CreateProsesProduksiTable extends Migration
             $table->date('deadline');
             $table->string('status');
             $table->string('mitra');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

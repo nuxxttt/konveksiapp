@@ -10,6 +10,6 @@ class Distribusi extends Model
     use HasFactory;
 
     protected $table = 'distribusi';
-    protected $fillable = ['mitra_id', 'kode_barang', 'kuantitas'];
+    protected $fillable = ['mitra_id', 'created_by', 'kode_barang', 'kuantitas'];
 
 }

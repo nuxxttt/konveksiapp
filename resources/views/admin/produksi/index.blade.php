@@ -15,6 +15,8 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 
@@ -46,6 +48,7 @@
                                         <th>Deadline</th>
                                         <th>Status</th>
                                         <th>Mitra</th>
+                                        <th>Created By</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -78,6 +81,13 @@
                                                 {{ $mitra->nama }}
                                             @endif
                                         @endforeach</td>
+                                        <td>
+                                            @foreach($user as $users)
+                                                @if($users->id == $produksi->created_by)
+                                                    {{ $users->name }}
+                                                @endif
+                                            @endforeach
+                                        </td>
 
                                         <td>
                                             <div class="btn-group">

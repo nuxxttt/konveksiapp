@@ -43,6 +43,9 @@
                     <div class="my-3 col-md-6">
                         <input type="hidden" type="text" name="id_rak" id="id_rak" class="form-control" value="{{ $id_rak }}">
                     </div>
+                    <div class="form-group mb-3">
+                        <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{auth()->user()->id}}">
+                    </div>
 
                     <div class="form-group mb-3">
                         <button type="submit" class="btn btn-primary">Simpan</button>

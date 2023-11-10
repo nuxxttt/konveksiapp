@@ -40,6 +40,7 @@ class PengemasanController extends Controller
         $request->validate([
             'mitra_id' => 'required',
             'kode_barang' => 'required',
+            'created_by' => 'required',
             'kuantitas' => 'required|numeric',
         ]);
 
@@ -75,6 +76,7 @@ class PengemasanController extends Controller
         $request->validate([
             'mitra_id' => 'required',
             'kode_barang' => 'required',
+            'created_by' => 'required',
             'kuantitas' => 'required|numeric',
         ]);
 

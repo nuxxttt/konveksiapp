@@ -257,7 +257,8 @@ function sendPenjualanDataToServer(data) {
         return {
             kode_barang: row[3], // Kode Produk
             mitra_id: {{$mitra->id}},
-            kuantitas: parseInt(row[1]) // Jumlah
+            kuantitas: parseInt(row[1]), // Jumlah
+            created_by: {{auth()->user()->id}}
         };
     });
 

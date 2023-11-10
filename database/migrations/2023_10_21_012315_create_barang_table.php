@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('keterangan');
             $table->string('satuan');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

@@ -35,6 +35,7 @@ class IsiRakController extends Controller
             'nama_barang' => 'required',
             'kuantitas' => 'required',
             'satuan' => 'required',
+            'created_by' => 'required',
         ]);
         $id_rak = $request->input('id_rak');
 
@@ -66,6 +67,7 @@ class IsiRakController extends Controller
             'nama_barang' => 'required',
             'kuantitas' => 'required',
             'satuan' => 'required',
+            'created_by' => 'required',
         ]);
 
         $isirak = IsiRak::find($id);

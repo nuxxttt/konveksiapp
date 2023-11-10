@@ -17,6 +17,7 @@ class CreateHistoryTable extends Migration
             $table->string('harga_jual',20);
             $table->string('stok');
             $table->string('status');
+            $table->string('created_by');
             $table->string('kode_transaksi');
             $table->string('keterangan');
             $table->timestamps();

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pengemasanhistory', function (Blueprint $table) {
             $table->id();
             $table->string("kode_barang");
+            $table->string("created_by");
             $table->string("kuantitas");
             $table->timestamps();
         });

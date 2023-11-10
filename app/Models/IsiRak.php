@@ -10,6 +10,6 @@ class IsiRak extends Model
     use HasFactory;
     protected $table = 'isi_rak';
     protected $fillable =[
-        'id_rak', 'nama_barang', 'kuantitas', 'satuan'
+        'id_rak', 'nama_barang', 'kuantitas', 'satuan', 'created_by'
     ];
 }

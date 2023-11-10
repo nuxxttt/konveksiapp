@@ -15,6 +15,9 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 
@@ -27,6 +30,7 @@
                         <h4 class="header-title">Daftar Proses Produksi</h4>
                         <div class="button mt-2">
                             <a href="{{ route('produksi.create') }}" class="btn btn-primary rounded-pill">Tambah Data</a>
+                            <a href="/admin/cetakpdf/produksiall?title=Laporan%20Produksi" class="btn btn-primary rounded-pill">Unduh Data</a>
                         </div>
                     </div>
                     @include('layouts.notifications')
@@ -46,6 +50,7 @@
                                         <th>Deadline</th>
                                         <th>Status</th>
                                         <th>Mitra</th>
+                                        <th>Created By</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -78,6 +83,13 @@
                                                 {{ $mitra->nama }}
                                             @endif
                                         @endforeach</td>
+                                        <td>
+                                            @foreach($user as $users)
+                                            @if($users->id == $produksi->created_by)
+                                                {{ $users->name }}
+                                            @endif
+                                        @endforeach
+                                        </td>
 
                                         <td>
                                             <div class="btn-group">

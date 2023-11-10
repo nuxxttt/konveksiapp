@@ -16,6 +16,9 @@
     @php
         use App\Models\IsiRak;
         use App\Models\Rak;
+        use App\Models\User;
+
+        $user = User::all();
 
         $crnm = Rak::where('id', $id_rak)->first()->nama;
 
@@ -48,6 +51,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Kuantitas</th>
+                                        <th>Created By</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -75,6 +79,11 @@
                                             @endif
                                         @endforeach
                                             </td>
+                                            <td>@foreach($user as $users)
+                                                @if($users->id == $item->created_by)
+                                                    {{ $users->name }}
+                                                @endif
+                                            @endforeach</td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('isirak.edit', $item->id) }}?id_rak={{ $id_rak }}" class="me-1">

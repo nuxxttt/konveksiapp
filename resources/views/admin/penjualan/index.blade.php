@@ -14,6 +14,8 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -23,6 +25,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="header-title">Histori Barang Terjual</h4>
+                        <a href="/admin/cetakpdf/alljual?title=Laporan%20Penjualan&status=jual" class="btn btn-primary rounded-pill"><i class="ri-file-download-line"></i></a>
                     </div>
                     @include('layouts.notifications')
                 </div>
@@ -40,6 +43,7 @@
                                         <th>Harga Pokok</th>
                                         <th>Harga Jual</th>
                                         <th>Kuantitas</th>
+                                        <th>Created By</th>
                                         <th>Action</th> {{-- Added a new column for the Details button --}}
                                     </tr>
                                 </thead>
@@ -64,7 +68,15 @@
                                         <td>{{ 'Rp. ' . number_format($penjualan->harga_jual, 2, ',', '.'); }}</td>
                                         <td>{{ $penjualan->stok }}</td>
                                         <td>
+                                            @foreach($user as $users)
+                                            @if($users->id == $penjualan->created_by)
+                                                {{ $users->name }}
+                                            @endif
+                                        @endforeach</td>                                        <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $penjualan->id }}"><i class="ri-eye-line"></i></button>
+                                            <a href="/admin/cetakpdf/{{$penjualan->kode_transaksi}}?title=Nota Pembelian" class="me-1 ">
+                                                <button type="submit" class="btn btn-secondary"><i class="ri-file-download-line"></i></button>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

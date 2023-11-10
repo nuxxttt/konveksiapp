@@ -23,6 +23,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="header-title">Daftar Barang Masuk</h4>
+                        <a href="/admin/cetakpdf/allbeli?title=Laporan%20Pembelian&status=beli" class="btn btn-primary rounded-pill"><i class="ri-file-download-line"></i></a>
                     </div>
                 </div>
             </div>
@@ -64,6 +65,9 @@
                                         <td>{{ $pembelian->stok }}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $pembelian->id }}"><i class="ri-eye-line"></i></button>
+                                            <a href="/admin/cetakpdf/{{$pembelian->kode_transaksi}}?title=Nota Pembelian" class="me-1 ">
+                                                <button type="submit" class="btn btn-secondary"><i class="ri-file-download-line"></i></button>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

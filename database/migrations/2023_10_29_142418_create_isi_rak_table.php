@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("nama_barang");
             $table->string("kuantitas");
             $table->string("satuan");
+            $table->string("created_by");
             $table->timestamps();
         });
     }

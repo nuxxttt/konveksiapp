@@ -37,6 +37,7 @@ class ProduksiController extends Controller
                 'status' => 'required',
                 'mulai' => 'required',
                 'deadline' => 'required',
+                'created_by' => 'required',
             ]);
 
             $requestData = $request->all();
@@ -72,6 +73,7 @@ class ProduksiController extends Controller
             'deadline' => 'required',
             'status' => 'required',
             'mitra' => 'required',
+            'created_by' => 'required',
         ]);
 
         $produksi = Produksi::find($id);

@@ -272,7 +272,8 @@ function sendPenjualanDataToServer(data) {
     var modifiedData = data.map(function(row) {
         return {
             kode_barang: row[3], // Kode Produk
-            kuantitas: parseInt(row[1])
+            kuantitas: parseInt(row[1]),
+            created_by: {{auth()->user()->id}}
         };
     });
 

@@ -14,6 +14,7 @@ class Produksi extends Model
         'mulai',
         'deadline',
         'status',
+        'created_by',
         'mitra'
     ];
 }

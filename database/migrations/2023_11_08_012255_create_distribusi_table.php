@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('distribusi', function (Blueprint $table) {
             $table->id();
             $table->string("mitra_id");
+            $table->string("created_by");
             $table->string("kode_barang");
             $table->string("kuantitas");
             $table->timestamps();

@@ -92,6 +92,9 @@
                                 <option value="Dibatalkan">Dari Client</option>
                             </select>
                         </div>
+                        <div class="form-group mb-3">
+                            <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{auth()->user()->id}}">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">

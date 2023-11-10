@@ -54,6 +54,9 @@
                             <label for="deadline" class="form-label">Deadline:</label>
                             <input type="text" name="deadline" class="form-control datepicker" required value="{{ $produksi->deadline }}">
                         </div>
+                        <div class="form-group mb-3">
+                            <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{auth()->user()->id}}">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">

@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'Tersedia',
                 'keterangan' => 'Barang Masuk',
                 'satuan' => 1,
+                'created_by' => 1,
             ],
             [
                 'uuid' => 'DEF456',
@@ -60,6 +61,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'Tersedia',
                 'keterangan' => 'Dari Client',
                 'satuan' => 1,
+                'created_by' => 1,
             ],
             // Tambahkan data dummy lainnya sesuai kebutuhan
         ];

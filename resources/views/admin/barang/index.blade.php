@@ -16,6 +16,8 @@
     $mitras = Mitra::all();
     use App\Models\Satuan;
     $satuans = Satuan::all();
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -52,6 +54,7 @@
                                         <th>Stok/Satuan</th>
                                         <th>Keterangan</th>
                                         <th>Status</th>
+                                        <th>Created By</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -92,6 +95,12 @@
                                             }
                                             ?>
                                             </td>
+                                            <td>
+                                                @foreach($user as $users)
+                                                @if($users->id == $barang->created_by)
+                                                    {{ $users->name }}
+                                                @endif
+                                            @endforeach</td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('barang.edit', $barang->id) }}" class="me-1 ">

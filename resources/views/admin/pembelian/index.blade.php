@@ -14,6 +14,9 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+
+    use App\Models\User;
+    $user = User::all();
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -23,6 +26,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="header-title">Daftar Barang Masuk</h4>
+                        <div class="button mt-2">
+                            <a href="/admin/cetakpdf/allbeli?title=Laporan%20Pembelian&status=beli" class="btn btn-primary rounded-pill"><i class="ri-file-download-line"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,6 +45,7 @@
                                         <th>Harga Pokok</th>
                                         <th>Harga Jual</th>
                                         <th>Kuantitas</th>
+                                        <th>Created By</th>
                                         <th></th> {{-- Added a new column for the Details button --}}
                                     </tr>
                                 </thead>
@@ -63,7 +70,16 @@
                                         <td>{{ 'Rp. ' . number_format($pembelian->harga_jual, 2, ',', '.'); }}</td>
                                         <td>{{ $pembelian->stok }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $pembelian->id }}"><i class="ri-eye-line"></i></button>
+                                            @foreach($user as $users)
+                                            @if($users->id == $pembelian->created_by)
+                                                {{ $users->name }}
+                                            @endif
+                                        @endforeach</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#standard-modal{{ $pembelian->id }}"><i class="ri-eye-line"></i></button>
+                                            <a href="/admin/cetakpdf/{{$pembelian->kode_transaksi}}?title=Nota Pembelian" class="me-1 ">
+                                                <button type="submit" class="btn btn-secondary"><i class="ri-file-download-line"></i></button>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

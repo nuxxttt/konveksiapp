@@ -7,15 +7,20 @@ use App\Models\Rak;
 use App\Models\Distribusi;
 
 
+$brall = Barang::all();
 $crkain = Category::where('product', 'Kain')->first();
 
 if ($crkain) {
-    $crkainId = $crkain->id;
+    $crkainId = $crkain ? $crkain->id : 0;
 } else {
     $crkainId = 0;
 }
-$jml = Barang::where('category_id', $crkain->id)->count(); // Retrieve the count of 'Barang' records
 
+if ($brall) {
+    $jml = $crkain ? Barang::where('category_id', $crkain->id)->count() : 0;
+} else {
+    $jml = 0;
+};
 $mitra = Mitra::count(); // Get the count of 'Mitra' records
 $distribusi = Distribusi::sum('kuantitas');
 
