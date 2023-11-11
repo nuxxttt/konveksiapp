@@ -130,9 +130,7 @@ function filterAndDisplayData() {
             supplierInput.val(supplierName);
         });
 
-        getSatuanName(selectedItem.satuan).then(function(satuanName) {
-            $('#stok').text(selectedItem.stok + " " + satuanName);
-        });
+        getSatuanName(selectedItem.satuan, selectedItem);
 
         satuan.val(harga);
         kode_produk.val(selectedItem.kode_barang);
@@ -159,14 +157,15 @@ function getCategoryName(categoryId) {
     });
 }
 
-function getSatuanName(satuanId) {
+function getSatuanName(satuanId, selectedItem) {
     return new Promise(function(resolve, reject) {
         $.ajax({
             url: '/api/satuan/' + satuanId,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data); // Add this line for debugging
+                console.log(data); // Log the data to see what's returned
+                $('#stok').text(selectedItem.stok + " " + data.nama);
                 resolve(data.nama);
             },
             error: function(error) {
@@ -175,6 +174,7 @@ function getSatuanName(satuanId) {
         });
     });
 }
+
 
 function getSupplierName(supplierId) {
     return new Promise(function(resolve, reject) {

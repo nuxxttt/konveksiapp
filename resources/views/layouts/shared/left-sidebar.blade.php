@@ -133,6 +133,7 @@
                     <i class="ri-scissors-line"></i>
                     <span> Pemotongan</span>
                 </a>
+                @if ($role == "superadmin")
                 <li class="side-nav-item">
                     <a data-bs-toggle="collapse" href="#sidebarChartss" aria-expanded="false"
                         aria-controls="sidebarChartss" class="side-nav-link">
@@ -161,6 +162,8 @@
                         </ul>
                     </div>
                 </li>
+                @endif
+
             </li>
             {{-- <li class="side-nav-item">
                 <a href="{{ route("any", "$role/peserta") }}" class="side-nav-link">
