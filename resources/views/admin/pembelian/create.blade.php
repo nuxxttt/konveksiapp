@@ -71,6 +71,12 @@
                             <tbody>
                                 <!-- Data rows will be added here dynamically -->
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" style="text-align: right;"><strong>Total Harga:</strong></td>
+                                    <td id="total-harga">0</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <div class="col-lg-12">
@@ -191,6 +197,17 @@ function getSupplierName(supplierId) {
         });
     });
 }
+function updateTotalHarga() {
+    var total = 0;
+    $('#temporary-table tbody tr').each(function() {
+        var hargaTotal = parseInt($(this).find('td:nth-child(7)').text()) || 0;
+        total += hargaTotal;
+    });
+    var formattedTotal = 'Rp. ' + total.toLocaleString('id-ID');
+    $('#total-harga').text(formattedTotal);
+}
+
+
 
 function generateRandomString() {
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -272,6 +289,7 @@ $(document).ready(function() {
 // Event handler for the "Kirim Data" button
 $('#hapusisitabel').on('click', function(event) {
     $('#temporary-table tbody').empty();
+    updateTotalHarga();
 })
 
 $('#kirimDataButton').on('click', function(event) {

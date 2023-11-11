@@ -18,9 +18,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="header-title">Daftar Mitra</h4>
+                    <h4 class="header-title">History Pemotongan</h4>
                     <div class="button mt-2">
-                        <a href="{{ route('mitra.create') }}" class="btn btn-primary rounded-pill">Tambah Data Mitra</a>
+                        <a href="{{ route('pemotongan.index') }}" class="btn btn-primary rounded-pill">Daftar Data</a>
+
                     </div>
                 </div>
                 <div class="card-body">
@@ -31,31 +32,26 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nama Mitra</th>
-                                            <th>Alamat</th>
-                                            <th>Nomor Telepon</th>
-                                            <th></th>
+                                            <th>Dari</th>
+                                            <th>Ke</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($konversi as $konversi)
+                                        @foreach($pemotongan as $pemotongans)
                                             <tr>
-                                                <td>{{ $mitra->id }}</td>
-                                                <td>{{ $mitra->nama }}</td>
-                                                <td>{{ $mitra->alamat }}</td>
-                                                <td>{{ $mitra->phone }}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('mitra.edit', $mitra->id) }}" class="me-1">
-                                                            <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
-                                                        </a>
-                                                        <form action="{{ route('mitra.destroy', $mitra->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                <td>{{ $pemotongans->id }}</td>
+                                                <td>{{ $pemotongans->hasil_id1 }}
+                                                    @foreach($satuans as $satuan)
+                                                    @if($satuan->id == $pemotongans->satuan_id1)
+                                                        {{ $satuan->nama }}
+                                                    @endif
+                                                @endforeach</td>
+                                                <td>{{ $pemotongans->hasil_id2 }}
+                                                    @foreach($satuans as $satuan)
+                                                    @if($satuan->id == $pemotongans->satuan_id1)
+                                                        {{ $satuan->nama }}
+                                                    @endif
+                                                @endforeach</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

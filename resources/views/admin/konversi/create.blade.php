@@ -1,308 +1,85 @@
-@extends('layouts.vertical', ['title' => 'Edit Mitra', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Tambahkan Konversi', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
 <div class="container">
-    @include('layouts.shared/page-title', ['sub_title' => 'Mitra', 'page_title' => 'Edit Mitra'])
-
-    <div class="card"> <!-- Center align the card -->
+    @include('layouts.shared/page-title', ['sub_title' => 'Konversi', 'page_title' => 'Tambahkan Data Acuan Konversi'])
+    @include('layouts.notification')
+    <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('distribusi.create') }}">
+            <form method="POST" action="{{ route('konversi.store') }}">
                 @csrf
-                @method('POST')
-
                 <div class="row">
                     <div class="col-lg-12">
+                        <div class="c-form mb-3">
+                            <input type="text" name="nama_konversi" id="nama_konversi" class="form-control" required hidden>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group mb-3">
-                            <label for="judul" class="form-label">Judul:</label>
-                            <select class="select2 form-select" id="judulSelector" name="judul" id="product-name-input">
-                                <option value="">Pilih barang</option>
+                            <label for="satuan_id1" class="form-label">Satuan Asal:</label>
+                            <select name="satuan_id1" id="satuan_id1" class="form-control" required>
+                                <option value="" disabled selected>Pilih Satuan</option>
+                                @foreach($satuan as $satuans)
+                                    <option value="{{ $satuans->id }}" data-placeholder="{{ $satuans->nama }}">{{ $satuans->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="jumlah" class="form-label">Jumlah:</label>
-                            <input type="number" class="jml form-control" name="supplier" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="stok" class="form-label">Stok:</label>
-                            <input type="text" class="stok form-control" name="stok" required>
+                            <label for="hasil_id1" class="form-label">Kuantitas:</label>
+                            <input type="number" name="hasil_id1" id="hasil_id1" class="form-control" required value="1">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group mb-3">
-                            <label for="kode_produk" class="form-label">Kode Produk:</label>
-                            <input type="text" class="kode_produk form-control" name="kode_produk" required>
+                            <label for="satuan_id2" class="form-label">Ke:</label>
+                            <select name="satuan_id2" id="satuan_id2" class="form-control" required>
+                                <option value="" disabled selected>Pilih Satuan</option>
+                                @foreach($satuan as $satuans)
+                                    <option value="{{ $satuans->id }}" data-placeholder="{{ $satuans->nama }}">{{ $satuans->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
+
                         <div class="form-group mb-3">
-                            <label for="supplier" class="form-label">Supplier:</label>
-                            <input type="text" class="supplier form-control" name="supplier" required>
+                            <label for="hasil_id2" class="form-label">Kuantitas:</label>
+                            <input type="number" name="hasil_id2" id="hasil_id2" class="form-control" required placeholder="Masukkan Target disini">
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="category" class="form-label">Kategori:</label>
-                            <input type="text" class="category form-control" name="category" required>
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <button id="simpanButton" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <table id="temporary-table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Judul</th>
-                                    <th>Jumlah</th>
-                                    <th>Stok</th>
-                                    <th>Kode Produk</th>
-                                    <th>Supplier</th>
-                                    <th>Kategori</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Data rows will be added here dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-12">
-                        <button id="kirimDataButton" class="btn btn-primary">Kirim Data</button>
-
-                        <button id="hapusisitabel" class="btn btn-danger ms-3">Hapus Data</button>
-                    </div>
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
-@endsection
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 
 <script>
-var jsonData = null;
-var selectedJudul = null;
+document.addEventListener('DOMContentLoaded', function () {
+    var satuanId1 = document.getElementById('satuan_id1');
+    var satuanId2 = document.getElementById('satuan_id2');
+    var hasil_id2 = document.getElementById('hasil_id2');
+    var namaKonversi = document.getElementById('nama_konversi');
 
-function filterAndDisplayData() {
-    var selectedItem = jsonData.data.find(function(item) {
-        return item.judul == selectedJudul;
-    });
+    function updatePlaceholder() {
+        var selectedOption1 = satuanId1.options[satuanId1.selectedIndex];
+        var selectedOption2 = satuanId2.options[satuanId2.selectedIndex];
 
-    if (selectedItem) {
-        var detailDiv = $('.detail');
-        var categoryInput = $('.category');
-        var supplierInput = $('.supplier');
-        var satuan = $('.satuan');
-        var stok = $('.stok');
-        var kode_produk = $('.kode_produk');
-        var total = $('.total');
-        var jml = $('.jml').val();
-
-        console.log(selectedItem.stok)
-        detailDiv.empty();
-        var harga = parseInt(selectedItem.harga_jual);
-
-        getCategoryName(selectedItem.category_id).then(function(categoryName) {
-            categoryInput.val(categoryName);
-        });
-
-        getSupplierName(selectedItem.supplier_id).then(function(supplierName) {
-            supplierInput.val(supplierName);
-        });
-
-        getSatuanName(selectedItem.supplier_id).then(function(supplierName) {
-            stok.val(selectedItem.stok + " " + supplierName);
-        });
-
-        kode_produk.val(selectedItem.kode_barang);
-        stok.val(selectedItem.stok);
-    }
-}
-
-function getCategoryName(categoryId) {
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: '/api/kategori/' + categoryId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                resolve(data.product);
-            },
-            error: function(error) {
-                reject(error);
-            }
-        });
-    });
-}
-
-function getSupplierName(supplierId) {
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: '/api/supplier/' + supplierId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                resolve(data.supplier);
-            },
-            error: function(error) {
-                reject(error);
-            }
-        });
-    });
-}
-
-function generateRandomString() {
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var length = 10; // Adjust the length as needed
-    var randomString = '';
-    for (var i = 0; i < length; i++) {
-        var randomIndex = Math.floor(Math.random() * characters.length);
-        randomString += characters.charAt(randomIndex);
-    }
-    return randomString;
-}
-
-function getSatuanName(satuanId) {
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: '/api/satuan/' + satuanId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data); // Add this line for debugging
-                resolve(data.nama);
-            },
-            error: function(error) {
-                reject(error);
-            }
-        });
-    });
-}
-
-$(document).ready(function() {
-    // Event handler for the "Kirim Data" button and Shift+Enter
-    $('body').on('keydown', function(event) {
-        if (event.key === 'Enter' && event.shiftKey) {
-            event.preventDefault();
-            $('#kirimDataButton').trigger('click');
+        if (selectedOption1 && selectedOption2) {
+            var placeholderText = "Masukkan Target " + selectedOption1.getAttribute('data-placeholder') + " ke " + selectedOption2.getAttribute('data-placeholder') + " disini";
+            hasil_id2.placeholder = placeholderText;
+            namaKonversi.value = selectedOption1.getAttribute('data-placeholder') + " ke " + selectedOption2.getAttribute('data-placeholder');
+        } else {
+            hasil_id2.placeholder = "Masukkan Target disini";
+            namaKonversi.value = "";
         }
-    });
+    }
 
+    satuanId1.addEventListener('change', updatePlaceholder);
+    satuanId2.addEventListener('change', updatePlaceholder);
 
-
-    $('#judulSelector').select2();
-    var judulSelector = $('#judulSelector');
-    var inputFields = $('.form-control');
-    var temporaryTable = $('#temporary-table');
-
-    $.ajax({
-        url: '/api/barang',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            jsonData = data;
-            $.each(data.data, function(index, item) {
-                judulSelector.append($('<option>', {
-                    value: item.judul,
-                    text: item.judul
-                }));
-            });
-
-            judulSelector.on('change', function() {
-                selectedJudul = $('.select2').val();
-                filterAndDisplayData();
-                var selectedItem = null;
-                console.log("Selected Judul: " + selectedJudul);
-            });
-
-            $('.jml').on('input', function() {
-                filterAndDisplayData();
-            });
-
-            // Handle form submission
-            // Event handler for the "Simpan" button
-            $('#simpanButton').on('click', function(event) {
-                event.preventDefault();
-
-                // Save input data to the temporary table
-                var rowData = [];
-                inputFields.each(function(index, input) {
-                    var value = $(input).val();
-                    rowData.push(value);
-                });
-
-                // Add the selected "Judul" value to the data
-                rowData.unshift(selectedJudul);
-
-                var row = $('<tr></tr>');
-                rowData.forEach(function(value) {
-                    row.append($('<td>' + value + '</td>'));
-                });
-                temporaryTable.find('tbody').append(row);
-
-                // Clear input fields and the selected "Judul"
-                inputFields.val('');
-                $('#selectedJudul').text('');
-            });
-
-            // Event handler for the "Kirim Data" button
-// Event handler for the "Kirim Data" button
-// Event handler for the "Kirim Data" button
-$('#kirimDataButton').on('click', function(event) {
-    event.preventDefault();
-    var rowData = [];
-    $('#temporary-table tbody tr').each(function() {
-        var row = [];
-        $(this).find('td').each(function() {
-            row.push($(this).text());
-        });
-        rowData.push(row);
-    });
-    sendPenjualanDataToServer(rowData);
-});
-
-$('#hapusisitabel').on('click', function(event) {
-    $('#temporary-table tbody').empty();
-})
-
-// Function to send data to the server
-function sendPenjualanDataToServer(data) {
-    var modifiedData = data.map(function(row) {
-        return {
-            kode_barang: row[3], // Kode Produk
-            kuantitas: parseInt(row[1])
-        };
-    });
-
-    // Loop through the modified data and send each array separately
-    modifiedData.forEach(function(postData) {
-        // Make an AJAX POST request for each row
-        $.ajax({
-            url: '/api/pengemasan', // Replace with the actual API endpoint URL
-            type: 'POST',
-            data: JSON.stringify(postData), // Convert the data to JSON format
-            contentType: 'application/json', // Set the content type to JSON
-            dataType: 'json',
-            success: function(response) {
-                // Handle the response from the server, e.g., show a success message
-                console.log('Data sent successfully:', response);
-            },
-            error: function(error) {
-                // Handle any errors that occur during the request
-                console.error('Error sending data:', error);
-            }
-        });
-    });
-
-    // Clear the temporary table after successful submission
-    $('#temporary-table tbody').empty();
-}
-
-
-
-        }
-    });
+    updatePlaceholder();
 });
 </script>
+
+@endsection

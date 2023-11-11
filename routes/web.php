@@ -24,6 +24,7 @@ use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\Distribusi2Controller;
 use App\Http\Controllers\PengemasanController;
 use App\Http\Controllers\KonversiController;
+use App\Http\Controllers\PemotonganController;
 use App\Http\Controllers\CetakPDFController;
 
 
@@ -52,36 +53,40 @@ Route::group(['middleware'=>'auth'],function () {
     });
 });
 
-$sharedRoutes = function () {
-    Route::resource('barang', BarangController::class);
-    Route::resource('mitra', MitraController::class);
-    Route::resource('supplier', SupplierController::class);
-    Route::resource('category', CategoryController::class);
-    Route::resource('produksi', ProduksiController::class);
-    Route::resource('pengemasan', ProduksiController::class);
-    Route::resource('profile', ProfileController::class);
-    Route::resource('rak', RakController::class);
-    Route::resource('satuan', SatuanController::class);
-    Route::resource('isirak', IsiRakController::class);
-    Route::resource('history', HistoryController::class);
-    Route::resource('cetakpdf', CetakPDFController::class);
-    Route::resource('distribusi', DistribusiController::class);
-    Route::get('/konversi', [KonversiController::class, 'konversiSatuan']);
-    Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
-    Route::get('penjualan/create', [HistoryController::class, 'penjualan_create'])->name('admin.penjualan.create');
-    Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
-    Route::put('settings', [SettingsController::class, 'update'])->name('admin.settings.update');
-    Route::get('penjualan', [HistoryController::class, 'index'])->name('penjualan.index');
-    Route::get('pembelian', [HistoryController::class, 'index'])->name('pembelian.index');
-    Route::get('distribusihistory', [Distribusi2Controller::class, 'index'])->name('distribusishow.index');
-    Route::get('produksihistory', [ProduksiHistoryController::class, 'index'])->name('produksihistory.index');
-    Route::get('pengemasan/create', [PengemasanController::class, 'create'])->name('pengemasan.create');
-    Route::get('pengemasanhistory', [PengemasanController::class, 'index'])->name('pengemasan.index');
+$roles = [
+    'admin', 'superadmin'
+];
+foreach ($roles as $roless) {
+    Route::group(['prefix' => "$roless", 'middleware' => ['auth']], function () use ($roless) {
+        Route::resource('barang', BarangController::class);
+        Route::resource('mitra', MitraController::class);
+        Route::resource('supplier', SupplierController::class);
+        Route::resource('category', CategoryController::class);
+        Route::resource('produksi', ProduksiController::class);
+        Route::resource('pengemasan', ProduksiController::class);
+        Route::resource('profile', ProfileController::class);
+        Route::resource('rak', RakController::class);
+        Route::resource('pemotongan', PemotonganController::class);
+        Route::resource('satuan', SatuanController::class);
+        Route::resource('isirak', IsiRakController::class);
+        Route::resource('history', HistoryController::class);
+        Route::resource('cetakpdf', CetakPDFController::class);
+        Route::resource('distribusi', DistribusiController::class);
+        Route::resource('konversi', KonversiController::class);
+        Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
+        Route::get('penjualan/create', [HistoryController::class, 'penjualan_create'])->name('admin.penjualan.create');
+        Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
+        Route::put('settings', [SettingsController::class, 'update'])->name('admin.settings.update');
+        Route::get('penjualan', [HistoryController::class, 'index'])->name('penjualan.index');
+        Route::get('pembelian', [HistoryController::class, 'index'])->name('pembelian.index');
+        Route::get('distribusihistory', [Distribusi2Controller::class, 'index'])->name('distribusishow.index');
+        Route::get('produksihistory', [ProduksiHistoryController::class, 'index'])->name('produksihistory.index');
+        Route::get('pengemasan/create', [PengemasanController::class, 'create'])->name('pengemasan.create');
+        Route::get('pemotonganhistory', [PemotonganController::class, 'history'])->name('pemotongan.history');
+        Route::get('pengemasanhistory', [PengemasanController::class, 'index'])->name('pengemasan.index');
+
+    });
 };
-
-Route::prefix('admin')->group($sharedRoutes);
-Route::prefix('superadmin')->group($sharedRoutes);
-
 //Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');
 //Route::get('/mitra/{id}/edit', [MitraController::class, 'edit'])->name('mitra.edit');
 

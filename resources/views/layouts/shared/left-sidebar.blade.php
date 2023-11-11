@@ -123,7 +123,7 @@
 
             </li>
             <li class="side-nav-item">
-                <a href="{{ route("any", "$role/konversi") }}" class="side-nav-link">
+                <a href="{{ route("any", "$role/konversi/create") }}" class="side-nav-link">
                     <i class=" ri-calculator-line "></i>
                     <span> Konversi</span>
                 </a>
@@ -148,6 +148,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('second', ["$role", 'pembelian']) }}">Pembelian</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('second', ["$role", 'pemotongan']) }}">Pemotongan</a>
                             </li>
                             <li>
                                 <a href="{{ route('second', ["$role", 'pengemasanhistory']) }}">Pengemasan</a>

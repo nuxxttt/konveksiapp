@@ -71,6 +71,13 @@
                             <tbody>
                                 <!-- Data rows will be added here dynamically -->
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" style="text-align: right;"><strong>Total Harga:</strong></td>
+                                    <td id="total-harga">0</td>
+                                </tr>
+                            </tfoot>
+
                         </table>
                     </div>
                     <div class="col-lg-12">
@@ -140,6 +147,18 @@ function filterAndDisplayData() {
         }
     }
 }
+
+function updateTotalHarga() {
+    var total = 0;
+    $('#temporary-table tbody tr').each(function() {
+        var hargaTotal = parseInt($(this).find('td:nth-child(7)').text()) || 0;
+        total += hargaTotal;
+    });
+    var formattedTotal = 'Rp. ' + total.toLocaleString('id-ID');
+    $('#total-harga').text(formattedTotal);
+}
+
+
 
 function getCategoryName(categoryId) {
     return new Promise(function(resolve, reject) {
@@ -215,6 +234,9 @@ $(document).ready(function() {
 
     $('#hapusisitabel').on('click', function(event) {
     $('#temporary-table tbody').empty();
+    updateTotalHarga();
+
+
 })
 
     $('#judulSelector').select2();
@@ -270,6 +292,8 @@ $(document).ready(function() {
                 // Clear input fields and the selected "Judul"
                 inputFields.val('');
                 $('#selectedJudul').text('');
+                updateTotalHarga();
+
             });
 
             // Event handler for the "Kirim Data" button

@@ -18,9 +18,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="header-title">Daftar Mitra</h4>
+                    <h4 class="header-title">Data Pemotongan</h4>
                     <div class="button mt-2">
-                        <a href="{{ route('mitra.create') }}" class="btn btn-primary rounded-pill">Tambah Data Mitra</a>
+                        <a href="{{ route('pemotongan.history') }}" class="btn btn-primary rounded-pill">History Data</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -31,25 +31,23 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nama Mitra</th>
-                                            <th>Alamat</th>
-                                            <th>Nomor Telepon</th>
+                                            <th>Nama Konversi</th>
+                                            <th>Perbandingan</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($konversi as $konversi)
+                                        @foreach($pemotongan as $pemotongans)
                                             <tr>
-                                                <td>{{ $mitra->id }}</td>
-                                                <td>{{ $mitra->nama }}</td>
-                                                <td>{{ $mitra->alamat }}</td>
-                                                <td>{{ $mitra->phone }}</td>
+                                                <td>{{ $pemotongans->id }}</td>
+                                                <td>{{ $pemotongans->nama_konversi }}</td>
+                                                <td>{{ $pemotongans->hasil_id1 }}:{{ $pemotongans->hasil_id2 }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('mitra.edit', $mitra->id) }}" class="me-1">
+                                                        <a href="{{ route('pemotongan.edit', $pemotongans->id) }}" class="me-1">
                                                             <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                                         </a>
-                                                        <form action="{{ route('mitra.destroy', $mitra->id) }}" method="POST">
+                                                        <form action="{{ route('pemotongan.destroy', $pemotongans->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
