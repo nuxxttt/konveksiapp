@@ -76,7 +76,8 @@
                                             @endif
                                         </td>
 
-                                        <td>                    @foreach($mitras as $mitra)
+                                        <td>
+                                            @foreach($mitras as $mitra)
                                             @if($mitra->id == $produksi->mitra)
                                                 {{ $mitra->nama }}
                                             @endif
