@@ -66,6 +66,7 @@
                                     <th>Kode Produk</th>
                                     <th>Harga Satuan</th>
                                     <th>Harga Total</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,8 +74,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6" style="text-align: right;"><strong>Total Harga:</strong></td>
-                                    <td id="total-harga">0</td>
+                                    <td colspan="7" style="border:none; text-align: right;"><strong>Total Harga:</strong></td>
+                                    <td id="total-harga" style="border:none;">0</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -199,13 +200,20 @@ function getSupplierName(supplierId) {
 }
 function updateTotalHarga() {
     var total = 0;
+
+    // Loop through each row in the table
     $('#temporary-table tbody tr').each(function() {
+        // Get the value in the last column (Harga Total)
         var hargaTotal = parseInt($(this).find('td:nth-child(7)').text()) || 0;
+
+        // Add the value to the total
         total += hargaTotal;
     });
-    var formattedTotal = 'Rp. ' + total.toLocaleString('id-ID');
-    $('#total-harga').text(formattedTotal);
+
+    // Update the #total-harga element with the calculated total
+    $('#total-harga').text('Rp. ' + total.toLocaleString('id-ID'));
 }
+
 
 
 
@@ -222,6 +230,12 @@ function generateRandomString() {
 
 $(document).ready(function() {
     // Event handler for the "Kirim Data" button and Shift+Enter
+    $('#temporary-table tbody').on('click', '.delete-row', function () {
+        // Get the closest row and remove it
+        $(this).closest('tr').remove();
+        updateTotalHarga(); // Update total after deleting a row
+    });
+
     $('body').on('keydown', function(event) {
         if (event.key === 'Enter' && event.shiftKey) {
             event.preventDefault();
@@ -265,7 +279,7 @@ $(document).ready(function() {
 
                 // Save input data to the temporary table
                 var rowData = [];
-                inputFields.each(function(index, input) {
+                inputFields.each(function (index, input) {
                     var value = $(input).val();
                     rowData.push(value);
                 });
@@ -273,8 +287,12 @@ $(document).ready(function() {
                 // Add the selected "Judul" value to the data
                 rowData.unshift(selectedJudul);
 
+                // Add the delete button to the row
+                var deleteButton = '<button class="btn btn-danger delete-row">Delete</button>';
+                rowData.push(deleteButton);
+
                 var row = $('<tr></tr>');
-                rowData.forEach(function(value) {
+                rowData.forEach(function (value) {
                     row.append($('<td>' + value + '</td>'));
                 });
                 temporaryTable.find('tbody').append(row);
@@ -282,6 +300,9 @@ $(document).ready(function() {
                 // Clear input fields and the selected "Judul"
                 inputFields.val('');
                 $('#selectedJudul').text('');
+                updateTotalHarga();
+
+
             });
 
             // Event handler for the "Kirim Data" button
@@ -289,7 +310,7 @@ $(document).ready(function() {
 // Event handler for the "Kirim Data" button
 $('#hapusisitabel').on('click', function(event) {
     $('#temporary-table tbody').empty();
-    updateTotalHarga();
+    updateTotalHarga();  // Call the function after clearing the table
 })
 
 $('#kirimDataButton').on('click', function(event) {
@@ -333,7 +354,7 @@ function sendPenjualanDataToServer(data) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Redirect to the new page with the transaction ID
-            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota Pembelian';
+            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota Pembelian&td=pmb';
         }
     });
 

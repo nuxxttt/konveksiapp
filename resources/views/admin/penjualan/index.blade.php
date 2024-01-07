@@ -14,7 +14,13 @@
 @php
     use App\Models\Mitra;
     $mitras = Mitra::all();
+    use App\Models\Barang;
+    $barangs = barang::all();
+    use App\Models\Category;
+    $kategorys = Category::all();
     use App\Models\User;
+    use App\Models\History;
+    $penjualans = History::where('status', 'beli')->get();
     $user = User::all();
 @endphp
 @section('content')
@@ -64,9 +70,9 @@
                                             @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ 'Rp. ' . number_format($penjualan->harga_pokok, 2, ',', '.'); }}</td>
-                                        <td>{{ 'Rp. ' . number_format($penjualan->harga_jual, 2, ',', '.'); }}</td>
-                                        <td>{{ $penjualan->stok }}</td>
+                                        <td>{{ 'Rp. ' . number_format(floatval($penjualan->harga_pokok), 2, ',', '.') }}</td>
+                                        <td>{{ 'Rp. ' . number_format(floatval($penjualan->harga_jual), 2, ',', '.') }}</td>
+                                                                                <td>{{ $penjualan->stok }}</td>
                                         <td>
                                             @foreach($user as $users)
                                             @if($users->id == $penjualan->created_by)

@@ -14,8 +14,8 @@
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label for="email" class="form-label">Jabatan:</label>
+                            <input type="text" name="email" class="form-control" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="password" class="form-label">Password:</label>

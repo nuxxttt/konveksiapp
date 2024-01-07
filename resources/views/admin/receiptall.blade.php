@@ -59,8 +59,8 @@
                     @endif
                     @endforeach
                 </td>
-                <td>{{ 'Rp. ' . number_format($dataa->harga_pokok, 2, ',', '.'); }}</td>
-                <td>{{ 'Rp. ' . number_format($dataa->harga_jual, 2, ',', '.'); }}</td>
+                <td>{{ 'Rp. ' . number_format(floatval($dataa->harga_pokok), 2, ',', '.') }}</td>
+                <td>{{ 'Rp. ' . number_format(floatval($dataa->harga_jual), 2, ',', '.') }}</td>
                 <td>{{ $dataa->stok }}</td>
                 <td>{{ $dataa->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d / H:i') }}</td>
             </tr>

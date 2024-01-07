@@ -23,7 +23,7 @@
 
                         <div class="form-group mb-3" id="gantiPasswordSection" style="display: none;">
                             <label for="password" class="form-label">Ganti Password: <small>(isi password baru disini)</small></label>
-                            <input type="password" name="password" class="form-control password-input" value="{{$profile->password}}">
+                            <input type="password" name="password" class="form-control password-input" value="">
                         </div>
 
                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,17 +36,19 @@
 
                                     // If the section is visible, clear the existing password value
                                     if ($('#gantiPasswordSection').is(':visible')) {
+                                        // Clear the password input field
                                         $('.password-input').val('');
                                     } else {
                                         // If the section is hidden, set the value to the existing password
-                                        $('.password-input').val('{{$profile->password}}');
+                                        // Use the existing password with encryption
+                                        $('.password-input').val('');
                                     }
                                 });
                             });
                         </script>
 
                         @if (auth()->user()->role == "superadmin")
-                        <input type="hidden" name="role" value="superadmin">
+                        <input type="hidden" name="role" value="admin">
                         @else
                         <input type="hidden" name="role" value="admin">
                         @endif

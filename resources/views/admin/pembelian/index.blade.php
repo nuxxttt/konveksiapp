@@ -16,7 +16,16 @@
     $mitras = Mitra::all();
 
     use App\Models\User;
+    use App\Models\History;
+    use App\Models\Barang;
+    use App\Models\Category;
+    $barangs = Barang::all();
+    $kategorys = Category::all();
+
     $user = User::all();
+
+    $pembelians = History::where('status', 'beli')->get();
+
 @endphp
 @section('content')
 <div class="row mt-xl-3">
@@ -66,9 +75,9 @@
                                             @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ 'Rp. ' . number_format($pembelian->harga_pokok, 2, ',', '.'); }}</td>
-                                        <td>{{ 'Rp. ' . number_format($pembelian->harga_jual, 2, ',', '.'); }}</td>
-                                        <td>{{ $pembelian->stok }}</td>
+                                        <td>{{ 'Rp. ' . number_format(floatval($pembelian->harga_pokok), 2, ',', '.') }}</td>
+                                        <td>{{ 'Rp. ' . number_format(floatval($pembelian->harga_jual), 2, ',', '.') }}</td>
+                                                                                <td>{{ $pembelian->stok }}</td>
                                         <td>
                                             @foreach($user as $users)
                                             @if($users->id == $pembelian->created_by)

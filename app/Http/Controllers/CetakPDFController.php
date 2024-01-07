@@ -38,6 +38,7 @@ class CetakPDFController extends Controller
 
         // Get the value of the "title" parameter from the URL
         $title = $request->input('title');
+        $typee = $request->input('td');
 
         if ($kode_transaksi == 'alljual' || $kode_transaksi == 'allbeli') {
             $status = $request->input('status');
@@ -63,7 +64,7 @@ class CetakPDFController extends Controller
             $pdf = PDF::loadView('admin.receipt', compact('data', 'title'));
 
             // Use the $title variable in the PDF filename
-            $filename = $kode_transaksi . '.pdf';
+            $filename = $typee . $kode_transaksi . '.pdf';
         }
 
 

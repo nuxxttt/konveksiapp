@@ -32,7 +32,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama </th>
-                                            <th>Email</th>
+                                            <th>Jabatan</th>
                                             <th>Role</th>
                                             <th></th>
                                         </tr>

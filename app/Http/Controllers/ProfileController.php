@@ -59,7 +59,6 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'role' => 'required', // Add validation for the "role" field
         ]);
 
@@ -68,10 +67,14 @@ class ProfileController extends Controller
         $profile->email = $request->input('email');
         $profile->role = $request->input('role');
 
-        // Hash the password only if it's provided in the request
-        if ($request->has('password')) {
+        // Check if the password field is not empty
+        if ($request->filled('password')) {
+            // Hash the new password
             $hashedPassword = Hash::make($request->input('password'));
             $profile->password = $hashedPassword;
+        } else {
+            // If the password field is empty, use the existing password
+            $profile->password = $profile->getOriginal('password');
         }
 
         $profile->save();
