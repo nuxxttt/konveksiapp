@@ -66,6 +66,7 @@
                                     <th>Kode Produk</th>
                                     <th>Harga Satuan</th>
                                     <th>Harga Total</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,7 +74,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6" style="text-align: right;"><strong>Total Harga:</strong></td>
+                                    <td colspan="7" style="text-align: right;"><strong>Total Harga:</strong></td>
                                     <td id="total-harga">0</td>
                                 </tr>
                             </tfoot>
@@ -150,12 +151,18 @@ function filterAndDisplayData() {
 
 function updateTotalHarga() {
     var total = 0;
+
+    // Loop through each row in the table
     $('#temporary-table tbody tr').each(function() {
+        // Get the value in the last column (Harga Total)
         var hargaTotal = parseInt($(this).find('td:nth-child(7)').text()) || 0;
+
+        // Add the value to the total
         total += hargaTotal;
     });
-    var formattedTotal = 'Rp. ' + total.toLocaleString('id-ID');
-    $('#total-harga').text(formattedTotal);
+
+    // Update the #total-harga element with the calculated total
+    $('#total-harga').text('Rp. ' + total.toLocaleString('id-ID'));
 }
 
 
@@ -223,12 +230,25 @@ function generateRandomString() {
 }
 
 $(document).ready(function() {
-    console.log({{auth()->user()->id}})
+    $('#temporary-table tbody').on('click', '.delete-row', function () {
+        // Get the closest row and remove it
+        $(this).closest('tr').remove();
+        updateTotalHarga(); // Update total after deleting a row
+    });
+
     // Event handler for the "Kirim Data" button and Shift+Enter
     $('body').on('keydown', function(event) {
         if (event.key === 'Enter' && event.shiftKey) {
             event.preventDefault();
             $('#kirimDataButton').trigger('click');
+        }
+    });
+
+        // Event handler for the "Hapus Data" button when Delete key is pressed
+    $('body').on('keydown', function(event) {
+        if (event.key === 'Delete') {
+            event.preventDefault();
+            $('#hapusisitabel').trigger('click');
         }
     });
 
@@ -282,6 +302,8 @@ $(document).ready(function() {
 
                 // Add the selected "Judul" value to the data
                 rowData.unshift(selectedJudul);
+                var deleteButton = '<button class="btn btn-danger delete-row"><i class="ri-delete-bin-6-line"></i></button>';
+                rowData.push(deleteButton);
 
                 var row = $('<tr></tr>');
                 rowData.forEach(function(value) {
@@ -341,7 +363,7 @@ function sendPenjualanDataToServer(data) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Redirect to the new page with the transaction ID
-            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota Pembelian';
+            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota&td=pjl';
         }
     });
 

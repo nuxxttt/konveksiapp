@@ -243,6 +243,15 @@ $(document).ready(function() {
         }
     });
 
+    // Event handler for the "Hapus Data" button when Delete key is pressed
+    $('body').on('keydown', function(event) {
+        if (event.key === 'Delete') {
+            event.preventDefault();
+            $('#hapusisitabel').trigger('click');
+        }
+    });
+
+
     $('#judulSelector').select2();
     var judulSelector = $('#judulSelector');
     var inputFields = $('.form-control');
@@ -288,7 +297,7 @@ $(document).ready(function() {
                 rowData.unshift(selectedJudul);
 
                 // Add the delete button to the row
-                var deleteButton = '<button class="btn btn-danger delete-row">Delete</button>';
+                var deleteButton = '<button class="btn btn-danger delete-row"><i class="ri-delete-bin-6-line"></i></button>';
                 rowData.push(deleteButton);
 
                 var row = $('<tr></tr>');

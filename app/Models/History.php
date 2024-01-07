@@ -24,6 +24,7 @@ class History extends Model
         'harga_jual',
         'stok',
         'created_by',
+        'created_at',
         'status',
         'kode_transaksi',
         'keterangan',

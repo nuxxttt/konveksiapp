@@ -31,7 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nama Konversi</th>
+                                            <th>Nama Pemotongan</th>
                                             <th>Perbandingan</th>
                                             <th></th>
                                         </tr>

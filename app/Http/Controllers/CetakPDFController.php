@@ -60,11 +60,12 @@ class CetakPDFController extends Controller
 
         } else {
             $data = History::where('kode_transaksi', $kode_transaksi)->get();
+            $dataa = History::where('kode_transaksi', $kode_transaksi)->first();
 
             $pdf = PDF::loadView('admin.receipt', compact('data', 'title'));
 
             // Use the $title variable in the PDF filename
-            $filename = $typee . $kode_transaksi . '.pdf';
+            $filename = $typee . ' & ' . $dataa->created_at . ' & ' . $kode_transaksi .'.pdf';
         }
 
 
