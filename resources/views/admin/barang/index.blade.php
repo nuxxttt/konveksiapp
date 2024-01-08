@@ -122,13 +122,13 @@
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('barang.edit', $barang->id) }}" class="me-1 ">
-                                                    <button type="submit" class="btn btn-primary rounded-pill"><i class="ri-edit-line"></i></button>
+                                                    <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                                 </a>
 
                                                 <form id="deleteForm{{ $barang->id }}" action="{{ route('barang.destroy', $barang->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="btn btn-danger rounded-pill" onclick="deleteBarang({{ $barang->id }})">
+                                                    <button type="button" class="btn btn-danger" onclick="deleteBarang({{ $barang->id }})">
                                                         <i class="ri-delete-bin-6-line"></i>
                                                     </button>
                                                 </form>

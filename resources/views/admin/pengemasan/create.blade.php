@@ -59,6 +59,7 @@
                                     <th>Kode Produk</th>
                                     <th>Supplier</th>
                                     <th>Kategori</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,6 +183,19 @@ function getSatuanName(satuanId) {
 }
 
 $(document).ready(function() {
+
+    $('#temporary-table tbody').on('click', '.delete-row', function () {
+        // Get the closest row and remove it
+        $(this).closest('tr').remove();
+    });
+
+    $('body').on('keydown', function(event) {
+        if (event.key === 'Delete') {
+            event.preventDefault();
+            $('#hapusisitabel').trigger('click');
+        }
+    });
+
     // Event handler for the "Kirim Data" button and Shift+Enter
     $('body').on('keydown', function(event) {
         if (event.key === 'Enter' && event.shiftKey) {
@@ -235,6 +249,12 @@ $(document).ready(function() {
 
                 // Add the selected "Judul" value to the data
                 rowData.unshift(selectedJudul);
+
+
+                // Add the delete button to the row
+                var deleteButton = '<button class="btn btn-danger delete-row"><i class="ri-delete-bin-6-line"></i></button>';
+                rowData.push(deleteButton);
+
 
                 var row = $('<tr></tr>');
                 rowData.forEach(function(value) {

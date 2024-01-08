@@ -38,6 +38,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                        <script>
+                                            function deleteBarang(mitraId) {
+                                                Swal.fire({
+                                                    title: 'Konfirmasi Hapus Data',
+                                                    text: 'Yakin ingin menghapus data?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: 'Ya',
+                                                    cancelButtonText: 'Tidak'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        // Form submission only if the user confirms
+                                                        var form = document.getElementById('deleteForm' + mitraId);
+                                                        form.submit();
+                                                    }
+                                                });
+                                            }
+                                        </script>
                                         @foreach($mitras as $mitra)
                                             <tr>
                                                 <td>{{ $mitra->id }}</td>
@@ -49,10 +69,12 @@
                                                         <a href="{{ route('mitra.edit', $mitra->id) }}" class="me-1">
                                                             <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                                         </a>
-                                                        <form action="{{ route('mitra.destroy', $mitra->id) }}" method="POST">
+                                                        <form id="deleteForm{{ $mitra->id }}" action="{{ route('mitra.destroy', $mitra->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
+                                                            <button type="button" class="btn btn-danger" onclick="deleteBarang({{ $mitra->id }})">
+                                                                <i class="ri-delete-bin-6-line"></i>
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </td>

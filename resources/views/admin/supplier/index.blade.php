@@ -29,6 +29,26 @@
                                             // Add this line to debug the $suppliers variable
                                             //dd($suppliers);
                                         @endphp
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                    <script>
+                                        function deleteBarang(barangId) {
+                                            Swal.fire({
+                                                title: 'Konfirmasi Hapus Data',
+                                                text: 'Yakin ingin menghapus data?',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Ya',
+                                                cancelButtonText: 'Tidak'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Form submission only if the user confirms
+                                                    var form = document.getElementById('deleteForm' + barangId);
+                                                    form.submit();
+                                                }
+                                            });
+                                        }
+                                    </script>
                                         @foreach($suppliers as $supplier)
                                             <tr>
                                                 <td>{{ $supplier->id }}</td>
@@ -40,10 +60,12 @@
                                                         <a href="{{ route('supplier.edit', $supplier->id) }}" class="me-1">
                                                             <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                                         </a>
-                                                        <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
+                                                        <form id="deleteForm{{ $supplier->id }}" action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
+                                                            <button type="button" class="btn btn-danger" onclick="deleteBarang({{ $supplier->id }})">
+                                                                <i class="ri-delete-bin-6-line"></i>
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </td>

@@ -53,6 +53,26 @@
                                         $data = Category::all();
 
                                     @endphp
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                                                        <script>
+                                                                            function deleteBarang(barangId) {
+                                                                                Swal.fire({
+                                                                                    title: 'Konfirmasi Hapus Data',
+                                                                                    text: 'Yakin ingin menghapus data?',
+                                                                                    icon: 'warning',
+                                                                                    showCancelButton: true,
+                                                                                    confirmButtonText: 'Ya',
+                                                                                    cancelButtonText: 'Tidak'
+                                                                                }).then((result) => {
+                                                                                    if (result.isConfirmed) {
+                                                                                        // Form submission only if the user confirms
+                                                                                        var form = document.getElementById('deleteForm' + barangId);
+                                                                                        form.submit();
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                        </script>
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{$index}}</td>
@@ -62,11 +82,13 @@
                                             <a href="{{ route('category.edit', $item->id) }}" class="me-1">
                                                 <button type="submit" class="btn btn-primary"><i class="ri-edit-line"></i></button>
                                             </a>
-                                            <form action="{{ route('category.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-6-line"></i></button>
-                                        </form>
+                                            <form id="deleteForm{{ $item->id }}" action="{{ route('category.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger" onclick="deleteBarang({{ $item->id }})">
+                                                    <i class="ri-delete-bin-6-line"></i>
+                                                </button>
+                                            </form>
                                             </div>
                                     </td>
                                     </tr>
