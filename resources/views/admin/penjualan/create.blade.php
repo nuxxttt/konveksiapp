@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Tambah Barang', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Penjualan', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
 <div class="container">
@@ -190,7 +190,6 @@ function getSatuanName(satuanId, selectedItem) {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data); // Log the data to see what's returned
                 $('#stok').text(selectedItem.stok + " " + data.nama);
                 resolve(data.nama);
             },
@@ -281,7 +280,6 @@ $(document).ready(function() {
                 selectedJudul = $('.select2').val();
                 filterAndDisplayData();
                 var selectedItem = null;
-                console.log("Selected Judul: " + selectedJudul);
             });
 
             $('.jml').on('input', function() {
@@ -332,6 +330,7 @@ $('#kirimDataButton').on('click', function(event) {
         rowData.push(row);
     });
     sendPenjualanDataToServer(rowData);
+
 });
 
 // Function to send data to the server
@@ -361,11 +360,14 @@ function sendPenjualanDataToServer(data) {
         confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak'
     }).then((result) => {
-        if (result.isConfirmed) {
-            // Redirect to the new page with the transaction ID
-            window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota&td=pjl';
-        }
-    });
+    if (result.isConfirmed) {
+        // Redirect to the new page with the transaction ID
+        window.location.href = '/admin/cetakpdf/' + kode_transaksi + '?title=Nota&td=pjl';
+    } else if (result.dismiss === Swal.DismissReason.cancel || result.dismiss === Swal.DismissReason.close) {
+        // User clicked Cancel or closed the modal, refresh the page
+        location.reload(true);
+    }
+});
 
     // Loop through the modified data and send each array separately
     modifiedData.forEach(function(postData) {

@@ -59,6 +59,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <script>
+                                        function deleteBarang(barangId) {
+                                            Swal.fire({
+                                                title: 'Konfirmasi Hapus Data',
+                                                text: 'Yakin ingin menghapus data?',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Ya',
+                                                cancelButtonText: 'Tidak'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Form submission only if the user confirms
+                                                    var form = document.getElementById('deleteForm' + barangId);
+                                                    form.submit();
+                                                }
+                                            });
+                                        }
+                                    </script>
                                     @foreach($barangs as $barang)
                                     <tr>
                                         <td>{{ $barang->id }}</td>
@@ -107,10 +125,12 @@
                                                     <button type="submit" class="btn btn-primary rounded-pill"><i class="ri-edit-line"></i></button>
                                                 </a>
 
-                                                <form action="{{ route('barang.destroy', $barang->id) }}" method="POST">
+                                                <form id="deleteForm{{ $barang->id }}" action="{{ route('barang.destroy', $barang->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger rounded-pill"><i class="ri-delete-bin-6-line"></i></button>
+                                                    <button type="button" class="btn btn-danger rounded-pill" onclick="deleteBarang({{ $barang->id }})">
+                                                        <i class="ri-delete-bin-6-line"></i>
+                                                    </button>
                                                 </form>
                                             </div>
 
@@ -128,6 +148,7 @@
     </div><!-- end col-->
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
 <!-- end row-->

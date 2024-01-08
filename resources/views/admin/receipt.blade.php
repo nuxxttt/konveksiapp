@@ -94,7 +94,7 @@ h1, h2 {
   @endif
       </section>
     <section class="order-details">
-      <h3>Order Details</h3>
+      <h3>Detail</h3>
       @php
       $totalHargaJual = 0;
   @endphp
